@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "создать.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

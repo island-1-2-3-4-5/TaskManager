@@ -1,0 +1,39 @@
+//
+//  MainViewCell.swift
+//  TaskManager
+//
+//  Created by Roman on 31.07.2020.
+//  Copyright © 2020 Roman Monakhov. All rights reserved.
+//
+
+import UIKit
+
+class MainViewCell: UITableViewCell {
+
+    @IBOutlet weak var cellViewFormat: UIView! {
+        didSet {
+            cellViewFormat.layer.cornerRadius = 10
+            cellViewFormat.layer.shadowOffset = CGSize(width: 0, height: 0)
+            cellViewFormat.layer.shadowColor = UIColor.black.cgColor
+            cellViewFormat.layer.shadowRadius = 4
+            cellViewFormat.layer.shadowOpacity = 0.2
+            cellViewFormat.layer.masksToBounds = false
+            cellViewFormat.clipsToBounds = false
+        }
+    }
+    
+    
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+        
+       
+    }
+    @IBOutlet weak var dataLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+
+  
+
+}
