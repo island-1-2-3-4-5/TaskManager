@@ -9,7 +9,13 @@
 import UIKit
 
 class MainViewCell: UITableViewCell {
-
+    
+    
+    @IBOutlet weak var dataLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel! 
+    
+   
+    
     @IBOutlet weak var cellViewFormat: UIView! {
         didSet {
             cellViewFormat.layer.cornerRadius = 10
@@ -22,18 +28,5 @@ class MainViewCell: UITableViewCell {
         }
     }
     
-    
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        
-       
-    }
-    @IBOutlet weak var dataLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-
-  
 
 }
