@@ -13,18 +13,18 @@ class MainViewModel {
     //MARK: - Свойства
     var tasks : Results<Task>!
     var completeTasks: Results<Task>!
+    var title: String! // заголовок для секций
+    var height: CGFloat = 60 // высота заголовка
+    var sectionCount: Int = 2
     
-    
-    
-    
+    // Подгрузка данных из realm
     func tasksData() {
         tasks = realm.objects(Task.self)
         completeTasks = realm.objects(Task.self)
     }
     
-    
+    // для индикатора
     func tasksIsEmpty() -> Bool {
-        
         if tasks.isEmpty && completeTasks.isEmpty{
             return true
         }
@@ -39,7 +39,26 @@ class MainViewModel {
      }
 
     
-    
+    func titleForSection() -> String{
+    if completeTasks.count == 0{
+              title = ""
+          } else {
+              title = "Завершенные"
+          }
+        return title
+    }
  
+    
+    // Формат даты
+    func dateUpdate(_ date: Date) -> String{
+        
+        let dates = DateFormat()
+        
+        
+        return dates.formatDate(date)
+    }
+    
+    
+    
 }
 

@@ -12,9 +12,8 @@ class NewViewController: UIViewController {
 
     
     //MARK: - Свойства
-    var currentTask: Task! // это свойство содержит информацию о текущей выбранной ячейке
-    let date = Date()
-   
+    var newViewModel = NewViewModel()
+    var editTrigger: Bool!
 
     //MARK: - Outlet
     @IBOutlet weak var viewInView: UIView!
@@ -28,18 +27,14 @@ class NewViewController: UIViewController {
     //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        saveAction.isEnabled = false
-        saveButton.isEnabled = false
-        nameTextView.isHidden = true
-        descriptionTextView.isHidden = true
-        
         // вызываем метод передачи информации об ячейке
         setupEditScreen()
         
         // При нажатии на экран будет срабатывать метод скрывания клавиатуры
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        
         self.view.addGestureRecognizer(tapGesture)
+
     }
     
     
@@ -49,17 +44,21 @@ class NewViewController: UIViewController {
         descriptionTextView.resignFirstResponder()
     }
  
+    
+    
     // MARK: - Сохраняем место
     func saveTask() {
         
         // инициализируем с помощью вспомогательного инициализатора
         let newTask = Task(name:nameTextView.text!,
-                           descriptionTask: descriptionTextView.text, createdAt: date, isCompleted: false)
+                           descriptionTask: descriptionTextView.text,
+                           createdAt: newViewModel.date,
+                           isCompleted: false)
 
-        if currentTask != nil {
+        if newViewModel.currentTask != nil {
                    try! realm.write{
-                       currentTask?.name = newTask.name
-                       currentTask?.descriptionTask = newTask.descriptionTask
+                       newViewModel.currentTask?.name = newTask.name
+                       newViewModel.currentTask?.descriptionTask = newTask.descriptionTask
                    }
                } else {
                    // сохраняем новый объект в базе
@@ -85,26 +84,44 @@ class NewViewController: UIViewController {
 
     // MARK: - Редактирование
     private func setupEditScreen() {
-        if currentTask != nil {
+        
+        editTrigger = false
+        
+        if newViewModel.currentTask != nil {
                     
+            editTrigger = true
             // если выбранная ячейка не пустая, то вызывается метод для навигации
             setupNavigationBar()
-       
             // перезаполняем наши Outlets
-            nameTextView.text = currentTask?.name
-            descriptionTextView.text = currentTask?.descriptionTask
+            nameTextView.text = newViewModel.nameUpdate()
+            descriptionTextView.text = newViewModel.descriptionUpdate()
+        }
+        editFunc()
+        
+    }
+    
+    
+    func editFunc(){
+        if editTrigger {
             nameTextView.isHidden = false
             descriptionTextView.isHidden = false
-            navigationItem.title = "РЕДАКТИРОВАНИЕ"
             saveAction.isEnabled = true
             saveButton.isEnabled = true
-                    
+        } else {
+            saveAction.isEnabled = false
+            saveButton.isEnabled = false
+            nameTextView.isHidden = true
+            descriptionTextView.isHidden = true
         }
         
+        
+
     }
     
     //MARK: - Навигация назад Main
     private func setupNavigationBar() {
+        
+         navigationItem.title = "РЕДАКТИРОВАНИЕ"
         // если существует Item в навигационном баре, то можно там что-то изменить
         if let topItem = navigationController?.navigationBar.topItem {
             // меняем наименование кнопки возврата
@@ -117,7 +134,7 @@ class NewViewController: UIViewController {
         
     }
 
- 
+
 }
 
 
@@ -148,6 +165,8 @@ extension NewViewController: UITextViewDelegate{
         }
         
       }
+    
+  
 
 }
 

@@ -15,9 +15,7 @@ class MainViewController: UIViewController{
     //MARK: - Свойства
    
     var mainViewModel = MainViewModel()
-    var sectionNames: [String] {
-        return Set(mainViewModel.tasks.value(forKey: "state") as! [String]).sorted()
-    }
+
     
     
     //MARK: - Outlets
@@ -74,7 +72,7 @@ class MainViewController: UIViewController{
 
             let newPlaceVC = segue.destination as! DetailViewController // сразу извлекаем опционал
             
-            newPlaceVC.currentTask = task // и обращаемся к свойству currentPlace из NewPlaceViewController, чтобы передать информацию о ячейке туда
+            newPlaceVC.detailViewModel.currentTask = task // и обращаемся к свойству currentPlace из NewPlaceViewController, чтобы передать информацию о ячейке туда
         }
     }
     
@@ -123,6 +121,8 @@ class MainViewController: UIViewController{
 }
 
 
+
+
      // MARK: - Table view data source
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -132,103 +132,78 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
  
     if let headerView = view as? UITableViewHeaderFooterView {
-//        headerView.textLabel?.frame = CGRect(x: 16, y: 16, width: 300, height: 26)
-
         headerView.contentView.backgroundColor = .white
         headerView.backgroundView?.backgroundColor = .black
         headerView.textLabel?.textColor = .black
         headerView.textLabel?.font = UIFont(name: "SFUIText-Regular", size: 22.0)
-        
     }
-
-    
-    
    }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var title: String!
-        
         if section == 0{
             return nil
         }
-        
-        if mainViewModel.completeTasks.count == 0{
-            return nil
-        } else {
-            title = "Завершенные"
-        }
-        return title
+        return mainViewModel.titleForSection()
     }
 
    
     //MARK: Высота заголовка секции
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        var height: CGFloat!
+        
         if section == 0 {
-            height = 0
-        } else {
-            height = 60
+            return 0
         }
         
-        return height
+        return mainViewModel.height
     }
-    
     
     //MARK: Количество секций
     func numberOfSections(in tableView: UITableView) -> Int {
-     return 2
+        return mainViewModel.sectionCount
        }
-    
-    
+
     //MARK: Количество строк
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       if section == 0{
         return mainViewModel.tasks.count
           }
         return mainViewModel.completeTasks.count
-        
     }
+    
+    
+    
     
     
     
         
     //MARK: - Конфигурация ячейки
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainViewCell
         
-      var task: Task!
+        var task: Task!
         
         
         if indexPath.section == 0{
-            
             task = mainViewModel.tasks[indexPath.row]
+            
+            // Снимаем зачеркивание
             let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: task.name)
-                       attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 0, range: NSMakeRange(0, attributeString.length))
-                       
-                       cell.descriptionLabel.attributedText = attributeString
-                       cell.descriptionLabel.textColor = .black        }
-            
-            else{
-            
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 0, range: NSMakeRange(0, attributeString.length))
+            cell.descriptionLabel.attributedText = attributeString
+            cell.descriptionLabel.textColor = .black
+        } else {
             task = mainViewModel.completeTasks[indexPath.row]
             
+            // устанавливаем формат записи в завершенных
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: task.name)
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
-            
             cell.descriptionLabel.attributedText = attributeString
             cell.descriptionLabel.textColor = .lightGray
-            
         }
         
         let date = task.createdAt
+        cell.dataLabel.text = mainViewModel.dateUpdate(date!)
         
-        let format = DateFormatter()
-        format.locale = Locale(identifier: "ru_RU")
-        format.dateFormat = "HH:mm dd MMMM yyyy"
-        let formattedDate = format.string(from: date!)
-        
-        
-        cell.dataLabel.text = formattedDate
         return cell
     }
 

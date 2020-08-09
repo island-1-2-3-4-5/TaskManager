@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		0C74858424DAF3D50003806C /* SFUIText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C74858324DAF3D50003806C /* SFUIText-Regular.ttf */; };
 		0C74858624DB357C0003806C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C74858524DB357C0003806C /* DetailViewController.swift */; };
-		0C74858824DC676F0003806C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C74858724DC676F0003806C /* Date.swift */; };
+		0C74858824DC676F0003806C /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C74858724DC676F0003806C /* DateFormat.swift */; };
+		0C74859724E062A30003806C /* NewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C74859624E062A30003806C /* NewViewModel.swift */; };
 		0C93FECC24D8506F00A4D072 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C93FECB24D8506F00A4D072 /* MainViewModel.swift */; };
 		0C93FECE24D8507D00A4D072 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C93FECD24D8507D00A4D072 /* DetailViewModel.swift */; };
 		0CB9679524D307DB00042F5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB9679424D307DB00042F5D /* AppDelegate.swift */; };
@@ -39,7 +40,8 @@
 		0C74858024DAF2F00003806C /* SFUIText-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Heavy.ttf"; sourceTree = "<group>"; };
 		0C74858324DAF3D50003806C /* SFUIText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Regular.ttf"; path = "../../../../Downloads/font/SFUIText-Regular.ttf"; sourceTree = "<group>"; };
 		0C74858524DB357C0003806C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		0C74858724DC676F0003806C /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		0C74858724DC676F0003806C /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
+		0C74859624E062A30003806C /* NewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewModel.swift; sourceTree = "<group>"; };
 		0C93FECB24D8506F00A4D072 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		0C93FECD24D8507D00A4D072 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		0CB9679124D307DB00042F5D /* TaskManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,7 +97,7 @@
 		0C74855724DAE10E0003806C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				0C74858724DC676F0003806C /* Date.swift */,
+				0C74858724DC676F0003806C /* DateFormat.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -127,6 +129,7 @@
 			children = (
 				0C93FECB24D8506F00A4D072 /* MainViewModel.swift */,
 				0C93FECD24D8507D00A4D072 /* DetailViewModel.swift */,
+				0C74859624E062A30003806C /* NewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -315,12 +318,13 @@
 				0CB967BC24D72CD400042F5D /* Task.swift in Sources */,
 				0CB967B024D4485300042F5D /* MainViewCell.swift in Sources */,
 				0CB9679924D307DB00042F5D /* MainViewController.swift in Sources */,
+				0C74859724E062A30003806C /* NewViewModel.swift in Sources */,
 				0CB967BE24D72DC000042F5D /* StorageManager.swift in Sources */,
 				0C93FECE24D8507D00A4D072 /* DetailViewModel.swift in Sources */,
 				0CB967B424D70A3F00042F5D /* NewViewController.swift in Sources */,
 				0CB9679524D307DB00042F5D /* AppDelegate.swift in Sources */,
 				0C74858624DB357C0003806C /* DetailViewController.swift in Sources */,
-				0C74858824DC676F0003806C /* Date.swift in Sources */,
+				0C74858824DC676F0003806C /* DateFormat.swift in Sources */,
 				0CB9679724D307DB00042F5D /* SceneDelegate.swift in Sources */,
 				0C93FECC24D8506F00A4D072 /* MainViewModel.swift in Sources */,
 			);

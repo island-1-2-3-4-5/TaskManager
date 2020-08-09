@@ -10,8 +10,8 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    var currentTask: Task!
-    
+//    var currentTask: Task!
+    var detailViewModel = DetailViewModel()
     
     //MARK: - Outlet
     
@@ -37,36 +37,30 @@ class DetailViewController: UIViewController {
     
     // MARK: - Отрисовка экрана
     private func setupEditScreen() {
-                 
-        let date = currentTask.createdAt!
-        let format = DateFormatter()
-        format.locale = Locale(identifier: "ru_RU")
-        format.dateFormat = "HH:mm dd MMMM yyyy"
-        let formattedDate = format.string(from: date)
-        
         // если выбранная ячейка не пустая, то вызывается метод для навигации
         setupNavigationBar()
-         
+        
         // перезаполняем наши Outlets
-        nameLabel.text = currentTask?.name
-        descriptionLabel.text = currentTask?.descriptionTask
-        dateLabel.text = formattedDate
+        nameLabel.text = detailViewModel.nameUpdate()
+        descriptionLabel.text = detailViewModel.descriptionUpdate()
+        dateLabel.text = detailViewModel.dateUpdate()
                   
     }
     
-    
+
     // MARK: - Удаляем место
     func deleteTask() {
-        StorageManager.deleteObject(currentTask)
+        detailViewModel.deleteTask()
+        
     }
-    
     
     func completeTask() {
-        try! realm.write{
-            
-            currentTask?.isCompleted = true
-        }
+        detailViewModel.completeTask()
     }
+    
+    
+    
+    
     
     // MARK: - Navigation вперед
 
@@ -76,7 +70,7 @@ class DetailViewController: UIViewController {
         if segue.identifier == "updateTask" {
             let newPlaceVC = segue.destination as! NewViewController // сразу извлекаем опционал
             
-            newPlaceVC.currentTask = currentTask // и обращаемся к свойству currentPlace из NewPlaceViewController, чтобы передать информацию о ячейке туда
+            newPlaceVC.newViewModel.currentTask = detailViewModel.currentTask // и обращаемся к свойству currentPlace из NewPlaceViewController, чтобы передать информацию о ячейке туда
      
         }
     }
