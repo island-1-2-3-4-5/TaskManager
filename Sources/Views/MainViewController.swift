@@ -9,13 +9,15 @@
 import UIKit
 import RealmSwift
 
+import CoreLocation
+
 
 class MainViewController: UIViewController{
 
     //MARK: - Свойства
    
     var mainViewModel = MainViewModel()
-
+let locationManager = CLLocationManager()
     
     
     //MARK: - Outlets
@@ -26,6 +28,9 @@ class MainViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        checkLocationEnable()
+        
         
         // делаем отображение базы данных, делаем запрос к отображаемому типу данных Task
         mainViewModel.tasksData()
@@ -40,6 +45,76 @@ class MainViewController: UIViewController{
         updateIndicator()
             
     }
+    
+    
+    // проверка включена ли геолокация
+    func checkLocationEnable(){
+        if CLLocationManager.locationServicesEnabled(){
+            locationManager.delegate = self
+            checkAutorization()
+        } else {
+            showAlertLocation(title:"У вас выключена служба геолокации", message:"Хотите включить?", url:URL(string: "App-Prefs:root=LOCATION_SERVICES"))
+       
+        }
+    }
+    
+    
+    // Спрашиваем пользователя на использование его геолокации
+    func checkAutorization(){
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedAlways:
+            break
+        case .authorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+            break
+        case .denied:
+            showAlertLocation(title: "Вы запретили использование местоположения", message: "Хотите это изменить?", url: URL(string: UIApplication.openSettingsURLString))
+            break
+        case .restricted:
+            break
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        @unknown default:
+            print("New case is availeble")
+            
+        }
+    }
+
+    func showAlertLocation(title:String, message:String?, url:URL?){
+        
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+        let settingsActions = UIAlertAction(title: "Настройки", style: .default) { (alert) in
+            if let url = url{
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+            
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+            
+        alert.addAction(settingsActions)
+        alert.addAction(cancelAction)
+            
+        present(alert, animated:  true, completion:  nil)
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
  
     
     //MARK: - Обновление индикатора
@@ -220,7 +295,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: - Удаление записей
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-
+                  
+        
         let task: Task!
         if indexPath.section == 0{
                           task = mainViewModel.tasks[indexPath.row]
@@ -234,14 +310,17 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         // удаляем из таблицы строку с объектом и сам объект из базы данных
         let contextItem = UIContextualAction(style: .destructive,
-                                                   title: "Delete") {  (_, _, _) in // (contextualAction, view, boolValue)
+                                                   title: "✕") {  (_, _, _) in // (contextualAction, view, boolValue)
                                                     StorageManager.deleteObject(task)
                                                     tableView.deleteRows(at: [indexPath], with: .automatic)
+                                                    
                                                     self.updateIndicator()
                                                     self.mainViewModel.readTasksAndUpateUI(tableView)
+                                   
                                                     
         }
         let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
+        
         return swipeActions
 
     }
@@ -259,7 +338,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                             }
 
         let contextItem = UIContextualAction(style: .normal,
-                                            title: "✔️") {  (_, _, _) in // (contextualAction, view, boolValue)
+                                            title: "✓") {  (_, _, _) in // (contextualAction, view, boolValue)
            try! realm.write{
             task.isCompleted = true
                                                 }
@@ -275,4 +354,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 
+}
+
+
+
+
+extension MainViewController: CLLocationManagerDelegate{
+
+        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+            checkAutorization()
+        }
 }

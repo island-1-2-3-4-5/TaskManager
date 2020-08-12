@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C1BE7AF24E444A10023F6AA /* TaskUserLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1BE7AE24E444A10023F6AA /* TaskUserLocations.swift */; };
 		0C74858424DAF3D50003806C /* SFUIText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C74858324DAF3D50003806C /* SFUIText-Regular.ttf */; };
 		0C74858624DB357C0003806C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C74858524DB357C0003806C /* DetailViewController.swift */; };
 		0C74858824DC676F0003806C /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C74858724DC676F0003806C /* DateFormat.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C1BE7AE24E444A10023F6AA /* TaskUserLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskUserLocations.swift; sourceTree = "<group>"; };
 		0C74857624DAF2EE0003806C /* SFUIText-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-BoldItalic.ttf"; sourceTree = "<group>"; };
 		0C74857724DAF2EE0003806C /* SFUIText-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-MediumItalic.ttf"; sourceTree = "<group>"; };
 		0C74857824DAF2EE0003806C /* SFUIText-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-RegularItalic.ttf"; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				0C74858724DC676F0003806C /* DateFormat.swift */,
+				0C1BE7AE24E444A10023F6AA /* TaskUserLocations.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -175,8 +178,8 @@
 		0CB9679324D307DB00042F5D /* TaskManager */ = {
 			isa = PBXGroup;
 			children = (
-				0C74857424DAF2D30003806C /* Fonts */,
 				0CB967A224D307DE00042F5D /* Info.plist */,
+				0C74857424DAF2D30003806C /* Fonts */,
 				0CB9679D24D307DE00042F5D /* Assets.xcassets */,
 			);
 			path = TaskManager;
@@ -325,6 +328,7 @@
 				0CB9679524D307DB00042F5D /* AppDelegate.swift in Sources */,
 				0C74858624DB357C0003806C /* DetailViewController.swift in Sources */,
 				0C74858824DC676F0003806C /* DateFormat.swift in Sources */,
+				0C1BE7AF24E444A10023F6AA /* TaskUserLocations.swift in Sources */,
 				0CB9679724D307DB00042F5D /* SceneDelegate.swift in Sources */,
 				0C93FECC24D8506F00A4D072 /* MainViewModel.swift in Sources */,
 			);

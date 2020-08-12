@@ -12,6 +12,8 @@ class DetailViewModel{
     
     var currentTask: Task!
     
+    
+    
     func dateUpdate() -> String{
         let date = currentTask.createdAt!
         let dates = DateFormat()

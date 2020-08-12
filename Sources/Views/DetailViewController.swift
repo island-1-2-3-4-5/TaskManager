@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import MapKit
+//import CoreLocation
 
 class DetailViewController: UIViewController {
 
-//    var currentTask: Task!
     var detailViewModel = DetailViewModel()
     
     //MARK: - Outlet
@@ -18,12 +19,26 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var coordLabel: UILabel!
     
     
     //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setupEditScreen()
+        coordLabel.text = "Координаты: \(String(describing: detailViewModel.currentTask.latitude)), \(String(describing: detailViewModel.currentTask.longitude))"
+
+        
+        
+        let region = MKCoordinateRegion(center: .init(latitude: detailViewModel.currentTask.latitude, longitude: detailViewModel.currentTask.longitude), latitudinalMeters: 500, longitudinalMeters: 500)
+        
+        map.setRegion(region, animated: true)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate.latitude = detailViewModel.currentTask.latitude
+        annotation.coordinate.longitude = detailViewModel.currentTask.longitude
+        map.showAnnotations([annotation], animated: true)
+        map.showsUserLocation = false
     }
     
 
@@ -93,4 +108,112 @@ class DetailViewController: UIViewController {
 
     
     
-}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//    let locationManager = CLLocationManager()
+    
+//
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        checkLocationEnable()
+//    }
+//
+//    // проверка включена ли геолокация
+//    func checkLocationEnable(){
+//        if CLLocationManager.locationServicesEnabled(){
+//            setupManager()
+//            checkAutorization()
+//        } else {
+//        //    showAlertLocation(title:"У вас выключена служба геолокации", message:"Хотите включить?", url:URL(string: "App-Prefs:root=LOCATION_SERVICES"))
+//
+//        }
+//    }
+//
+//
+//
+//    func setupManager(){
+//        locationManager.delegate = self
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//    }
+//
+//
+//    // Спрашиваем пользователя на использование его геолокации
+//    func checkAutorization(){
+//        switch CLLocationManager.authorizationStatus() {
+//        case .authorizedAlways:
+//            break
+//        case .authorizedWhenInUse:
+//            map.showsUserLocation = true
+//            locationManager.startUpdatingLocation()
+//            break
+//        case .denied:
+//        //    showAlertLocation(title: "Вы запретили использование местоположения", message: "Хотите это изменить?", url: URL(string: UIApplication.openSettingsURLString))
+//            break
+//        case .restricted:
+//            break
+//        case .notDetermined:
+//            locationManager.requestWhenInUseAuthorization()
+//        @unknown default:
+//            print("New case is availeble")
+//
+//        }
+    }
+        
+        
+        
+        
+//    func showAlertLocation(title:String, message:String?, url:URL?){
+//
+//
+//        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//
+//        let settingsActions = UIAlertAction(title: "Настройки", style: .default) { (alert) in
+//            if let url = url{
+//                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//            }
+//        }
+//
+//        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+//
+//        alert.addAction(settingsActions)
+//        alert.addAction(cancelAction)
+//
+//        present(alert, animated:  true, completion:  nil)
+//    }
+        
+
+//
+//extension DetailViewController: CLLocationManagerDelegate{
+//
+////    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+////            if let location = locations.last?.coordinate{
+////
+////                let region = MKCoordinateRegion(center: location, latitudinalMeters: 1000, longitudinalMeters: 1000)
+////                map.setRegion(region, animated: true)
+////            }
+////        coordLabel.text = "Координаты: \(String(describing: locations.last!.coordinate.latitude)), \(String(describing: locations.last!.coordinate.longitude))"
+////        }
+////
+////        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+////            checkAutorization()
+////        }
+//}

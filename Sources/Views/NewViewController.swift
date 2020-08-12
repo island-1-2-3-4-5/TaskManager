@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class NewViewController: UIViewController {
 
@@ -14,6 +15,9 @@ class NewViewController: UIViewController {
     //MARK: - Свойства
     var newViewModel = NewViewModel()
     var editTrigger: Bool!
+    let locationManager = CLLocationManager()
+    var latitude: Double!
+    var longitude: Double!
 
     //MARK: - Outlet
     @IBOutlet weak var viewInView: UIView!
@@ -34,8 +38,32 @@ class NewViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         
         self.view.addGestureRecognizer(tapGesture)
+        
+        
+        setupManager()
 
     }
+    
+    
+    func setupManager(){
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     //MARK: - Убираем клавиатуру
@@ -49,11 +77,16 @@ class NewViewController: UIViewController {
     // MARK: - Сохраняем место
     func saveTask() {
         
+        
+        
+        
+        
+        
         // инициализируем с помощью вспомогательного инициализатора
         let newTask = Task(name:nameTextView.text!,
                            descriptionTask: descriptionTextView.text,
                            createdAt: newViewModel.date,
-                           isCompleted: false)
+                           isCompleted: false, latitude: latitude, longitude: longitude)
 
         if newViewModel.currentTask != nil {
                    try! realm.write{
@@ -171,3 +204,16 @@ extension NewViewController: UITextViewDelegate{
 }
 
 
+
+extension NewViewController: CLLocationManagerDelegate{
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            if let location = locations.last?.coordinate{
+                
+                latitude = location.latitude
+                longitude = location.longitude
+             
+            }
+
+        }
+}

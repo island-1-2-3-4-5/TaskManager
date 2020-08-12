@@ -16,6 +16,10 @@ class MainViewModel {
     var title: String! // заголовок для секций
     var height: CGFloat = 60 // высота заголовка
     var sectionCount: Int = 2
+    var location = TaskUserLocations()
+    
+    
+    
     
     // Подгрузка данных из realm
     func tasksData() {
