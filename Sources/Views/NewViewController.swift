@@ -7,17 +7,14 @@
 //
 
 import UIKit
-import CoreLocation
+
 
 class NewViewController: UIViewController {
 
     
     //MARK: - Свойства
     var newViewModel = NewViewModel()
-    var editTrigger: Bool!
-    let locationManager = CLLocationManager()
-    var latitude: Double!
-    var longitude: Double!
+
 
     //MARK: - Outlet
     @IBOutlet weak var viewInView: UIView!
@@ -45,26 +42,14 @@ class NewViewController: UIViewController {
     }
     
     
+    
+    //MARK: Locations
     func setupManager(){
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
+        newViewModel.locationManager.delegate = self
+        newViewModel.locationsSettings()
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     //MARK: - Убираем клавиатуру
     @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
@@ -77,16 +62,11 @@ class NewViewController: UIViewController {
     // MARK: - Сохраняем место
     func saveTask() {
         
-        
-        
-        
-        
-        
         // инициализируем с помощью вспомогательного инициализатора
         let newTask = Task(name:nameTextView.text!,
                            descriptionTask: descriptionTextView.text,
                            createdAt: newViewModel.date,
-                           isCompleted: false, latitude: latitude, longitude: longitude)
+                           isCompleted: false, latitude: newViewModel.latitude ?? 0.0, longitude: newViewModel.longitude ?? 0.0)
 
         if newViewModel.currentTask != nil {
                    try! realm.write{
@@ -118,11 +98,11 @@ class NewViewController: UIViewController {
     // MARK: - Редактирование
     private func setupEditScreen() {
         
-        editTrigger = false
+        newViewModel.editTrigger = false
         
         if newViewModel.currentTask != nil {
                     
-            editTrigger = true
+            newViewModel.editTrigger = true
             // если выбранная ячейка не пустая, то вызывается метод для навигации
             setupNavigationBar()
             // перезаполняем наши Outlets
@@ -135,7 +115,7 @@ class NewViewController: UIViewController {
     
     
     func editFunc(){
-        if editTrigger {
+        if newViewModel.editTrigger {
             nameTextView.isHidden = false
             descriptionTextView.isHidden = false
             saveAction.isEnabled = true
@@ -205,15 +185,4 @@ extension NewViewController: UITextViewDelegate{
 
 
 
-extension NewViewController: CLLocationManagerDelegate{
 
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            if let location = locations.last?.coordinate{
-                
-                latitude = location.latitude
-                longitude = location.longitude
-             
-            }
-
-        }
-}

@@ -6,10 +6,15 @@
 //  Copyright © 2020 Roman Monakhov. All rights reserved.
 //
 import UIKit
-
+import CoreLocation
 class NewViewModel{
     var currentTask: Task! // это свойство содержит информацию о текущей выбранной ячейке
     let date = Date()
+    var editTrigger: Bool!
+    let locationManager = CLLocationManager()
+    // Эти значения приходят из расширения в файле TaskUserLocations
+    var latitude: Double?
+    var longitude: Double?
     
     
     func descriptionUpdate() -> String{
@@ -22,5 +27,9 @@ class NewViewModel{
      }
     
     
+    func locationsSettings(){
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+    }
     
 }

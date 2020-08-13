@@ -10,7 +10,25 @@ import MapKit
 import CoreLocation
 
 
-class TaskUserLocations{
-   
+
+extension MainViewController: CLLocationManagerDelegate{
+
+        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+            checkAutorization()
+        }
 }
 
+
+
+extension NewViewController: CLLocationManagerDelegate{
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            if let location = locations.last?.coordinate{
+                
+                newViewModel.latitude = location.latitude
+                newViewModel.longitude = location.longitude
+             
+            }
+
+        }
+}

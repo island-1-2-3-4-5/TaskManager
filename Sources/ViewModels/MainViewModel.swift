@@ -7,6 +7,7 @@
 //
 
 import RealmSwift
+import CoreLocation
 
 class MainViewModel {
     
@@ -16,7 +17,32 @@ class MainViewModel {
     var title: String! // заголовок для секций
     var height: CGFloat = 60 // высота заголовка
     var sectionCount: Int = 2
-    var location = TaskUserLocations()
+    var alert: UIAlertController!
+    let locationManager = CLLocationManager()
+    
+    
+    //MARK: AlertController
+
+    func showAlertLocation(title:String, message:String?, url:URL?) -> UIAlertController{
+        
+        alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+            
+        let settingsActions = UIAlertAction(title: "Настройки", style: .default) { (alert) in
+            if let url = url{
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+            
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+            
+        alert.addAction(settingsActions)
+        alert.addAction(cancelAction)
+            
+        return alert
+    }
+    
+    
     
     
     

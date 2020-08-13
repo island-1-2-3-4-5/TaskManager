@@ -8,8 +8,8 @@
 
 import UIKit
 import RealmSwift
-
 import CoreLocation
+
 
 
 class MainViewController: UIViewController{
@@ -17,7 +17,7 @@ class MainViewController: UIViewController{
     //MARK: - Свойства
    
     var mainViewModel = MainViewModel()
-let locationManager = CLLocationManager()
+
     
     
     //MARK: - Outlets
@@ -46,76 +46,7 @@ let locationManager = CLLocationManager()
             
     }
     
-    
-    // проверка включена ли геолокация
-    func checkLocationEnable(){
-        if CLLocationManager.locationServicesEnabled(){
-            locationManager.delegate = self
-            checkAutorization()
-        } else {
-            showAlertLocation(title:"У вас выключена служба геолокации", message:"Хотите включить?", url:URL(string: "App-Prefs:root=LOCATION_SERVICES"))
-       
-        }
-    }
-    
-    
-    // Спрашиваем пользователя на использование его геолокации
-    func checkAutorization(){
-        switch CLLocationManager.authorizationStatus() {
-        case .authorizedAlways:
-            break
-        case .authorizedWhenInUse:
-            locationManager.startUpdatingLocation()
-            break
-        case .denied:
-            showAlertLocation(title: "Вы запретили использование местоположения", message: "Хотите это изменить?", url: URL(string: UIApplication.openSettingsURLString))
-            break
-        case .restricted:
-            break
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-        @unknown default:
-            print("New case is availeble")
-            
-        }
-    }
 
-    func showAlertLocation(title:String, message:String?, url:URL?){
-        
-        
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            
-        let settingsActions = UIAlertAction(title: "Настройки", style: .default) { (alert) in
-            if let url = url{
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
-        }
-            
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-            
-        alert.addAction(settingsActions)
-        alert.addAction(cancelAction)
-            
-        present(alert, animated:  true, completion:  nil)
-    }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
- 
     
     //MARK: - Обновление индикатора
     func updateIndicator() {
@@ -153,7 +84,7 @@ let locationManager = CLLocationManager()
     
     
     
-    //MARK: - Actions
+    //MARK: - Actions navigations
     
     //Выход Segue создаем этот метод для того, чтобы мы могли на него сослаться из последнего контроллера(кнопка cancel)
     
@@ -192,13 +123,57 @@ let locationManager = CLLocationManager()
         updateIndicator()
         
     }
-
+    
+    
+    
+    //MARK: - Геопозиция
+    // проверка включена ли геолокация
+    func checkLocationEnable(){
+        if CLLocationManager.locationServicesEnabled(){
+            mainViewModel.locationManager.delegate = self
+            checkAutorization()
+        } else {
+            present(mainViewModel.showAlertLocation(title:"У вас выключена служба геолокации", message:"Хотите включить?", url:URL(string: "App-Prefs:root=LOCATION_SERVICES")), animated:  true, completion:  nil)
+            
+       
+        }
+    }
+    
+    // Спрашиваем пользователя на использование его геолокации
+    func checkAutorization(){
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedAlways:
+            break
+        case .authorizedWhenInUse:
+            mainViewModel.locationManager.startUpdatingLocation()
+            break
+        case .denied:
+            present(mainViewModel.showAlertLocation(title: "Вы запретили использование местоположения", message: "Хотите это изменить?", url: URL(string: UIApplication.openSettingsURLString)), animated:  true, completion:  nil)
+            break
+        case .restricted:
+            break
+        case .notDetermined:
+            mainViewModel.locationManager.requestWhenInUseAuthorization()
+        @unknown default:
+            print("New case is availeble")
+            
+        }
+    }
 }
 
 
 
 
-     // MARK: - Table view data source
+
+
+
+
+
+
+
+
+
+     // MARK: - extension Tableview
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     
@@ -359,9 +334,3 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
 
 
-extension MainViewController: CLLocationManagerDelegate{
-
-        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-            checkAutorization()
-        }
-}
