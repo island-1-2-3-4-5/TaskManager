@@ -31,12 +31,6 @@ class DetailViewController: UIViewController {
     }
     
 
-    
-    //MARK: - Actions
-    @IBAction func cancelAction(_ sender: Any) {
-        dismiss(animated: true)
-    }
-    
 
     
     // MARK: - Отрисовка экрана

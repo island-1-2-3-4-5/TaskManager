@@ -14,10 +14,11 @@ class DetailViewModel{
     var currentTask: Task!
     
     func annotation() -> MKPointAnnotation{
+        
     let annotation = MKPointAnnotation()
     annotation.coordinate.latitude = currentTask.latitude
     annotation.coordinate.longitude = currentTask.longitude
-        return annotation
+    return annotation
     }
     
     func dateUpdate() -> String{
