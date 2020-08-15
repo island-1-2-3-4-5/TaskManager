@@ -63,8 +63,8 @@ class MainViewModel {
     
     
     func readTasksAndUpateUI(_ tableView: UITableView){
-        tasks = realm.objects(Task.self).filter("isCompleted = false")
-        completeTasks = realm.objects(Task.self).filter("isCompleted = true")
+        tasks = realm.objects(Task.self).filter("isCompleted = false").sorted(byKeyPath: "createdAt", ascending: false)
+        completeTasks = realm.objects(Task.self).filter("isCompleted = true").sorted(byKeyPath: "createdAt", ascending: false)
          tableView.reloadData()
      }
 

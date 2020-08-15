@@ -317,7 +317,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1sC-d1-frW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="YiL-HC-S3P" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2711.594202898551" y="778.53260869565224"/>
+            <point key="canvasLocation" x="2612" y="10"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wH0-RG-9Rx">
@@ -588,7 +588,7 @@
                                                             <segue destination="6ca-2X-7Hg" kind="show" id="BPF-pa-kTB"/>
                                                         </connections>
                                                     </button>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="OjM-IY-YNs">
+                                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="OjM-IY-YNs">
                                                         <rect key="frame" x="369.66666666666669" y="1.9999999999999982" width="12.333333333333314" height="29.333333333333329"/>
                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </imageView>
@@ -822,7 +822,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QEk-lt-XGM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2761" y="-743"/>
+            <point key="canvasLocation" x="2613" y="-743"/>
         </scene>
         <!--ЗАДАЧА-->
         <scene sceneID="hHl-lp-x8e">
@@ -960,7 +960,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Sl-1I-4X4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="nY4-aY-hec" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1870" y="779"/>
+            <point key="canvasLocation" x="1870" y="9"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OFf-Ya-uN4">
@@ -988,11 +988,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c0h-YA-85T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1871" y="9"/>
+            <point key="canvasLocation" x="1870" y="758"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="XVa-8T-FAM"/>
+        <segue reference="jcA-6C-wF1"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
