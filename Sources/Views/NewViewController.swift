@@ -23,6 +23,7 @@ class NewViewController: UIViewController {
     @IBOutlet weak var nameTextView: UITextView!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var bottomConstraintTextVIew: NSLayoutConstraint!
+    @IBOutlet weak var pickerOutlet: UIDatePicker!
     
     
     //MARK: - ViewDidLoad
@@ -93,6 +94,9 @@ class NewViewController: UIViewController {
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
          dismiss(animated: true)
     }
+    @IBAction func hiddenPickerText(_ sender: UIButton) {
+        pickerOutlet.isHidden = false
+    }
     
 
     // MARK: - Редактирование
@@ -118,6 +122,7 @@ class NewViewController: UIViewController {
         if newViewModel.editTrigger {
             nameTextView.isHidden = false
             descriptionTextView.isHidden = false
+            pickerOutlet.isHidden = false
             saveAction.isEnabled = true
             saveButton.isEnabled = true
         } else {
@@ -125,6 +130,7 @@ class NewViewController: UIViewController {
             saveButton.isEnabled = false
             nameTextView.isHidden = true
             descriptionTextView.isHidden = true
+            pickerOutlet.isHidden = true
         }
         
         
