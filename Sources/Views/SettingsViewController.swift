@@ -16,12 +16,39 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var faceIdStack: UIStackView!
     @IBOutlet weak var touchIdersStack: UIStackView!
 
+    @IBOutlet var timeSwitches: [UISwitch]!
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
     
     
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        
+        
+        
+        setupNavigationBar()
+        // Do any additional setup after loading the view.
+    }
+    
+    
+    
+    
+    
+    
+    //MARK: - Actions
     @IBAction func remindersSwitch(_ sender: UISwitch) {
+
         if sender.isOn == false{
             remindersStack.isHidden = true
+            
         } else {
+            
+        
+            let notificationType = "Уведомление!"
+            
+            appDelegate?.scheduleNotification(notifaicationType: notificationType)
             remindersStack.isHidden = false
 
         }
@@ -36,17 +63,94 @@ class SettingsViewController: UIViewController {
             passwordStack.isHidden = false
             faceIdStack.isHidden = false
             touchIdersStack.isHidden = false
+        }
+    }
 
+    
+    @IBAction func fiftyMinutesSwitch(_ sender: UISwitch) {
+        if sender.isOn{
+            timeSwitches[1].isOn = false
+            timeSwitches[2].isOn = false
+            timeSwitches[3].isOn = false
+            timeSwitches[4].isOn = false
+            timeSwitches[5].isOn = false
+            timeSwitches[6].isOn = false
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBAction func thirtyMinutesSwitch(_ sender: UISwitch) {
+        if sender.isOn{
+            timeSwitches[0].isOn = false
+            timeSwitches[2].isOn = false
+            timeSwitches[3].isOn = false
+            timeSwitches[4].isOn = false
+            timeSwitches[5].isOn = false
+            timeSwitches[6].isOn = false
+        }
 
-        
-        setupNavigationBar()
-        // Do any additional setup after loading the view.
     }
+    
+    @IBAction func oneHourSwitch(_ sender: UISwitch) {
+        if sender.isOn{
+            timeSwitches[0].isOn = false
+            timeSwitches[1].isOn = false
+            timeSwitches[3].isOn = false
+            timeSwitches[4].isOn = false
+            timeSwitches[5].isOn = false
+            timeSwitches[6].isOn = false
+        }
+
+    }
+    
+    @IBAction func twoHourSwitch(_ sender: UISwitch) {
+        if sender.isOn{
+            timeSwitches[0].isOn = false
+            timeSwitches[1].isOn = false
+            timeSwitches[2].isOn = false
+            timeSwitches[4].isOn = false
+            timeSwitches[5].isOn = false
+            timeSwitches[6].isOn = false
+        }
+
+    }
+    
+    @IBAction func eightHourSwitch(_ sender: UISwitch) {
+        if sender.isOn{
+            timeSwitches[0].isOn = false
+            timeSwitches[1].isOn = false
+            timeSwitches[2].isOn = false
+            timeSwitches[3].isOn = false
+            timeSwitches[5].isOn = false
+            timeSwitches[6].isOn = false
+        }
+
+    }
+    
+    @IBAction func twelveHourSwitch(_ sender: UISwitch) {
+        if sender.isOn{
+            timeSwitches[0].isOn = false
+            timeSwitches[1].isOn = false
+            timeSwitches[2].isOn = false
+            timeSwitches[3].isOn = false
+            timeSwitches[4].isOn = false
+            timeSwitches[6].isOn = false
+        }
+
+    }
+    @IBAction func oneDaySwitch(_ sender: UISwitch) {
+        if sender.isOn{
+            timeSwitches[0].isOn = false
+            timeSwitches[1].isOn = false
+            timeSwitches[2].isOn = false
+            timeSwitches[3].isOn = false
+            timeSwitches[4].isOn = false
+            timeSwitches[5].isOn = false
+        }
+
+    }
+    
+    
+    
     
     // MARK: - Навигация назад Main
     private func setupNavigationBar() {

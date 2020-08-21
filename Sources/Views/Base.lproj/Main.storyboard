@@ -379,7 +379,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="692"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wzk-dX-1Nw">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="335"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="336"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="171" translatesAutoresizingMaskIntoConstraints="NO" id="XiD-LI-Dij" userLabel="Напоминания">
                                                 <rect key="frame" x="16" y="16" width="382" height="31"/>
@@ -423,6 +423,9 @@
                                                                     </label>
                                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XJn-Uw-TaW">
                                                                         <rect key="frame" x="320" y="0.0" width="51" height="0.0"/>
+                                                                        <connections>
+                                                                            <action selector="fiftyMinutesSwitch:" destination="rU7-US-0vf" eventType="valueChanged" id="3fI-dQ-gN5"/>
+                                                                        </connections>
                                                                     </switch>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d3S-5I-2Cx">
                                                                         <rect key="frame" x="371" y="0.0" width="11" height="0.0"/>
@@ -452,6 +455,9 @@
                                                                     </label>
                                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="B69-KE-7Mk">
                                                                         <rect key="frame" x="320" y="0.0" width="51" height="0.0"/>
+                                                                        <connections>
+                                                                            <action selector="thirtyMinutesSwitch:" destination="rU7-US-0vf" eventType="valueChanged" id="630-Q6-n8q"/>
+                                                                        </connections>
                                                                     </switch>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hbw-n2-teg">
                                                                         <rect key="frame" x="371" y="0.0" width="11" height="0.0"/>
@@ -481,6 +487,9 @@
                                                                     </label>
                                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rxT-Ha-Zey">
                                                                         <rect key="frame" x="320" y="0.0" width="51" height="0.0"/>
+                                                                        <connections>
+                                                                            <action selector="oneHourSwitch:" destination="rU7-US-0vf" eventType="valueChanged" id="zjh-TH-yAl"/>
+                                                                        </connections>
                                                                     </switch>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TOo-tu-kKW">
                                                                         <rect key="frame" x="371" y="0.0" width="11" height="0.0"/>
@@ -510,6 +519,9 @@
                                                                     </label>
                                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="KSl-fk-kVX">
                                                                         <rect key="frame" x="320" y="0.0" width="51" height="0.0"/>
+                                                                        <connections>
+                                                                            <action selector="twoHourSwitch:" destination="rU7-US-0vf" eventType="valueChanged" id="DMA-re-o8m"/>
+                                                                        </connections>
                                                                     </switch>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Gt-BA-mHW">
                                                                         <rect key="frame" x="371" y="0.0" width="11" height="0.0"/>
@@ -539,6 +551,9 @@
                                                                     </label>
                                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dW7-uu-n5Z">
                                                                         <rect key="frame" x="320" y="0.0" width="51" height="0.0"/>
+                                                                        <connections>
+                                                                            <action selector="eightHourSwitch:" destination="rU7-US-0vf" eventType="valueChanged" id="PIZ-wu-upb"/>
+                                                                        </connections>
                                                                     </switch>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e1G-6s-sRa">
                                                                         <rect key="frame" x="371" y="0.0" width="11" height="0.0"/>
@@ -568,6 +583,9 @@
                                                                     </label>
                                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="EOW-Jh-hJB">
                                                                         <rect key="frame" x="320" y="0.0" width="51" height="0.0"/>
+                                                                        <connections>
+                                                                            <action selector="twelveHourSwitch:" destination="rU7-US-0vf" eventType="valueChanged" id="cY5-ht-cs1"/>
+                                                                        </connections>
                                                                     </switch>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1KF-7n-fus">
                                                                         <rect key="frame" x="371" y="0.0" width="11" height="0.0"/>
@@ -597,6 +615,9 @@
                                                                     </label>
                                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cZ5-02-d8g">
                                                                         <rect key="frame" x="320" y="0.0" width="51" height="0.0"/>
+                                                                        <connections>
+                                                                            <action selector="oneDaySwitch:" destination="rU7-US-0vf" eventType="valueChanged" id="oUH-fO-6UM"/>
+                                                                        </connections>
                                                                     </switch>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K8c-bq-ajS">
                                                                         <rect key="frame" x="371" y="0.0" width="11" height="0.0"/>
@@ -645,10 +666,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="EFY-SX-gAr">
-                                                <rect key="frame" x="16" y="141" width="382" height="33"/>
+                                                <rect key="frame" x="16" y="141" width="382" height="34"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJN-Gc-BoZ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="368.66666666666669" height="33"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="368.66666666666669" height="34"/>
                                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="18"/>
                                                         <state key="normal" title="Изменить пароль">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -658,13 +679,13 @@
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="OjM-IY-YNs">
-                                                        <rect key="frame" x="369.66666666666669" y="1.9999999999999982" width="12.333333333333314" height="29.333333333333329"/>
+                                                        <rect key="frame" x="369.66666666666669" y="1.9999999999999982" width="12.333333333333314" height="30.333333333333329"/>
                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </imageView>
                                                 </subviews>
                                             </stackView>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Foz-yY-psm">
-                                                <rect key="frame" x="16" y="210" width="382" height="31"/>
+                                                <rect key="frame" x="16" y="211" width="382" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Face ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yeA-yA-AZY">
                                                         <rect key="frame" x="0.0" y="0.0" width="332" height="31"/>
@@ -678,7 +699,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="GiX-xm-CL8">
-                                                <rect key="frame" x="16" y="277" width="382" height="31"/>
+                                                <rect key="frame" x="16" y="278" width="382" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5V-cG-0Uo">
                                                         <rect key="frame" x="0.0" y="0.0" width="332" height="31"/>
@@ -746,6 +767,13 @@
                         <outlet property="passwordStack" destination="EFY-SX-gAr" id="3zS-UU-G4D"/>
                         <outlet property="remindersStack" destination="lg8-ap-BjM" id="8KB-k4-8qb"/>
                         <outlet property="touchIdersStack" destination="GiX-xm-CL8" id="6PA-G2-Jqe"/>
+                        <outletCollection property="timeSwitches" destination="XJn-Uw-TaW" collectionClass="NSMutableArray" id="itl-cq-B2j"/>
+                        <outletCollection property="timeSwitches" destination="B69-KE-7Mk" collectionClass="NSMutableArray" id="5gq-iM-6yN"/>
+                        <outletCollection property="timeSwitches" destination="rxT-Ha-Zey" collectionClass="NSMutableArray" id="o45-MT-lFi"/>
+                        <outletCollection property="timeSwitches" destination="KSl-fk-kVX" collectionClass="NSMutableArray" id="KdB-GD-90D"/>
+                        <outletCollection property="timeSwitches" destination="dW7-uu-n5Z" collectionClass="NSMutableArray" id="f9X-oW-CT0"/>
+                        <outletCollection property="timeSwitches" destination="EOW-Jh-hJB" collectionClass="NSMutableArray" id="9tn-nK-Xba"/>
+                        <outletCollection property="timeSwitches" destination="cZ5-02-d8g" collectionClass="NSMutableArray" id="rNQ-fd-cww"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nVj-ES-Gxm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
