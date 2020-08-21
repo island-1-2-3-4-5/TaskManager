@@ -45,7 +45,6 @@ class MainViewController: UIViewController{
         
         updateIndicator()
         
-            
     }
     
 
