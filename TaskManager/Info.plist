@@ -26,6 +26,7 @@
 	<string>Для определения местоположения</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SFUIDisplay-Bold</string>
 		<string>SFUIDisplay-Regular</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>

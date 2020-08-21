@@ -26,6 +26,9 @@ class NewViewModel{
         return currentTask.name
      }
     
+  func pickerDateUpdate() -> Date{
+    return currentTask.pickerDate!
+    }
     
     func locationsSettings(){
         locationManager.desiredAccuracy = kCLLocationAccuracyBest

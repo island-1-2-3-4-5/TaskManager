@@ -20,6 +20,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var coordLabel: UILabel!
+    @IBOutlet weak var pickerDate: UILabel!
     
     
     //MARK: - ViewDidLoad
@@ -45,6 +46,8 @@ class DetailViewController: UIViewController {
         coordLabel.text = "Координаты: \(detailViewModel.currentTask.latitude), \(detailViewModel.currentTask.longitude)"
         map.showAnnotations([detailViewModel.annotation()], animated: true)
         map.showsUserLocation = false
+        pickerDate.text = detailViewModel.pickerDate()
+        pickerDate.textColor = detailViewModel.textColorDate()
     }
     
 

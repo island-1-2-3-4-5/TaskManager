@@ -27,6 +27,25 @@ class DetailViewModel{
         return dates.formatDate(date)
     }
     
+    func pickerDate() -> String{
+        let date = currentTask.pickerDate!
+        let dates = DateFormat()
+        return dates.formatDate(date)
+     }
+    
+    
+    
+    
+    func textColorDate() -> UIColor{
+        if currentTask.pickerDate! < currentTask.date && currentTask.isCompleted == false {
+            return UIColor(rgb: 0xEB5757)
+        } else if currentTask.pickerDate! > currentTask.date && currentTask.isCompleted == false {
+            return UIColor(rgb: 0x219653)
+        }
+      return UIColor(rgb: 0xBDBDBD)
+
+        
+    }
     
     func descriptionUpdate() -> String{
         return currentTask.descriptionTask!

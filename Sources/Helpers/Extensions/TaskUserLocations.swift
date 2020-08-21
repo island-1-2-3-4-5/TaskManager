@@ -32,3 +32,6 @@ extension NewViewController: CLLocationManagerDelegate{
 
         }
 }
+
+
+

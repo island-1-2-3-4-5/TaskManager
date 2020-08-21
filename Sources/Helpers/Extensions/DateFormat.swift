@@ -17,5 +17,16 @@ class DateFormat{
         return formattedDate
     }
     
+    func formatDateInHour(_ date: Date) -> String {
+        
+        let format = DateFormatter()
+        format.locale = Locale(identifier: "ru_RU")
+        format.dateFormat = "HH:mm"
+        let formattedDate = format.string(from: date)
+        return formattedDate
+    }
+    
+    
+    
     
 }

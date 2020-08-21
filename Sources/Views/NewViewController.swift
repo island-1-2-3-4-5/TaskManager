@@ -39,8 +39,24 @@ class NewViewController: UIViewController {
         
         
         setupManager()
+        
+        
+        
+        // Наблюдатель, к примеру можем выбирать и тсеживать текущую дату
+        pickerOutlet.addTarget(self, action: #selector(datePickerChange(paramDatePicker:)), for: .valueChanged) // при измении
+    
 
     }
+    @objc func datePickerChange(paramDatePicker: UIDatePicker){
+        if paramDatePicker.isEqual(self.pickerOutlet){ // isEqual - равно
+            print("dateChange := ", paramDatePicker.date) // распечатывает выбранную дату
+        }
+    }
+
+    
+    
+    
+    
     
     
     
@@ -67,12 +83,13 @@ class NewViewController: UIViewController {
         let newTask = Task(name:nameTextView.text!,
                            descriptionTask: descriptionTextView.text,
                            createdAt: newViewModel.date,
-                           isCompleted: false, latitude: newViewModel.latitude ?? 0.0, longitude: newViewModel.longitude ?? 0.0)
+                           isCompleted: false, latitude: newViewModel.latitude ?? 0.0, longitude: newViewModel.longitude ?? 0.0, pickerDate: pickerOutlet.date)
 
         if newViewModel.currentTask != nil {
                    try! realm.write{
                        newViewModel.currentTask?.name = newTask.name
                        newViewModel.currentTask?.descriptionTask = newTask.descriptionTask
+                        newViewModel.currentTask?.pickerDate = newTask.pickerDate
                    }
                } else {
                    // сохраняем новый объект в базе
@@ -112,6 +129,7 @@ class NewViewController: UIViewController {
             // перезаполняем наши Outlets
             nameTextView.text = newViewModel.nameUpdate()
             descriptionTextView.text = newViewModel.descriptionUpdate()
+            pickerOutlet.date = newViewModel.pickerDateUpdate()
         }
         editFunc()
         

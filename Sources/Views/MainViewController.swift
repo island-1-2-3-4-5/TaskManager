@@ -17,8 +17,8 @@ class MainViewController: UIViewController{
     //MARK: - Свойства
    
     var mainViewModel = MainViewModel()
+    var tableViewUpdate = Timer()
 
-    
     
     //MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -30,8 +30,7 @@ class MainViewController: UIViewController{
 
         
         checkLocationEnable()
-        
-        
+
         // делаем отображение базы данных, делаем запрос к отображаемому типу данных Task
         mainViewModel.tasksData()
         mainViewModel.readTasksAndUpateUI(tableView)
@@ -42,10 +41,21 @@ class MainViewController: UIViewController{
                                                          width: tableView.frame.size.width,
                                                          height: 1))
         
+        tableViewUpdate  = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+        
         updateIndicator()
+        
             
     }
     
+
+        
+    
+
+    @objc func update(){
+        mainViewModel.updateUI(tableView)
+
+    }
 
     
     //MARK: - Обновление индикатора
@@ -68,17 +78,21 @@ class MainViewController: UIViewController{
             guard let indexPath = tableView.indexPathForSelectedRow  else {return}
 
             var task = Task()
+
+           if indexPath.section == 0 {
+            task = mainViewModel.expiredTasks[indexPath.row]
+           }else if indexPath.section == 1{
+            task = mainViewModel.tasks[indexPath.row]
             
-            if indexPath.section == 0{
-                       task = mainViewModel.tasks[indexPath.row]
-                   }
-                   else{
-                       task = mainViewModel.completeTasks[indexPath.row]
-                   }
+           }else{
+            task = mainViewModel.completeTasks[indexPath.row]
+            }
 
             let newPlaceVC = segue.destination as! DetailViewController // сразу извлекаем опционал
-            
+
             newPlaceVC.detailViewModel.currentTask = task // и обращаемся к свойству currentPlace из NewPlaceViewController, чтобы передать информацию о ячейке туда
+
+                               
         }
     }
     
@@ -190,20 +204,27 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
    }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0{
-            return nil
+   
+        if section == 0 {
+        return mainViewModel.titleForExpiredSection()
+        } else if section == 1{
+            return mainViewModel.titleForComingSection()
         }
-        return mainViewModel.titleForSection()
+           return mainViewModel.titleForSection()
+        
     }
 
    
     //MARK: Высота заголовка секции
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        if section == 0 {
+        if section == 0 && mainViewModel.expiredTasks.count == 0{
+            return 0
+        } else if section == 1 && mainViewModel.tasks.count == 0{
+            return 0
+        } else if section == 2 && mainViewModel.completeTasks.count == 0{
             return 0
         }
-        
         return mainViewModel.height
     }
     
@@ -215,8 +236,13 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     //MARK: Количество строк
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       if section == 0{
+        return mainViewModel.expiredTasks.count
+        
+      } else if section == 1{
         return mainViewModel.tasks.count
-          }
+        
+      }
+        
         return mainViewModel.completeTasks.count
     }
     
@@ -234,14 +260,41 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         
         if indexPath.section == 0{
-            task = mainViewModel.tasks[indexPath.row]
             
+            
+            task = mainViewModel.expiredTasks[indexPath.row]
+                       
             // Снимаем зачеркивание
             let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: task.name)
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 0, range: NSMakeRange(0, attributeString.length))
             cell.descriptionLabel.attributedText = attributeString
             cell.descriptionLabel.textColor = .black
-        } else {
+            cell.dataLabel.textColor = UIColor(rgb: 0xEB5757)
+            cell.dataLabel.text = mainViewModel.dateUpdate(task.pickerDate!)
+
+            
+            
+            
+        } else if indexPath.section == 1{
+            
+            
+            
+            task = mainViewModel.tasks[indexPath.row]
+    
+            // Снимаем зачеркивание
+            let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: task.name)
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 0, range: NSMakeRange(0, attributeString.length))
+            cell.descriptionLabel.attributedText = attributeString
+            cell.descriptionLabel.textColor = .black
+            cell.dataLabel.textColor = UIColor(rgb: 0x219653)
+            cell.dataLabel.text = mainViewModel.dateInHourUpdate(task.pickerDate!)
+
+            
+            
+        } else if indexPath.section == 2 {
+            
+            
+            
             task = mainViewModel.completeTasks[indexPath.row]
             
             // устанавливаем формат записи в завершенных
@@ -249,10 +302,13 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
             cell.descriptionLabel.attributedText = attributeString
             cell.descriptionLabel.textColor = .lightGray
+            cell.dataLabel.textColor = UIColor(rgb: 0xBDBDBD)
+            cell.dataLabel.text = mainViewModel.dateUpdate(task.pickerDate!)
+
         }
         
-        let date = task.createdAt
-        cell.dataLabel.text = mainViewModel.dateUpdate(date!)
+
+
         
         return cell
     }
@@ -273,13 +329,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                   
         
         let task: Task!
-        if indexPath.section == 0{
-                          task = mainViewModel.tasks[indexPath.row]
-                      }
-                      else{
-                          task = mainViewModel.completeTasks[indexPath.row]
-                      }
-        
+        if indexPath.section == 0 {
+         task = mainViewModel.expiredTasks[indexPath.row]
+        }else if indexPath.section == 1{
+                    task = mainViewModel.tasks[indexPath.row]
+                }
+                else{
+                    task = mainViewModel.completeTasks[indexPath.row]
+                }
         
         
         
@@ -290,7 +347,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                                                     tableView.deleteRows(at: [indexPath], with: .automatic)
                                                     
                                                     self.updateIndicator()
-                                                    self.mainViewModel.readTasksAndUpateUI(tableView)
+                                                    self.mainViewModel.readTasksAndUpateUI(self.tableView)
+                                                        
                                    
                                                     
         }
@@ -305,13 +363,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
        let task: Task!
-              if indexPath.section == 0{
-                                task = mainViewModel.tasks[indexPath.row]
-                            }
-                            else{
-                                task = mainViewModel.completeTasks[indexPath.row]
-                            }
-
+              if indexPath.section == 0 {
+               task = mainViewModel.expiredTasks[indexPath.row]
+              }else if indexPath.section == 1{
+                          task = mainViewModel.tasks[indexPath.row]
+                      }
+                      else{
+                          task = mainViewModel.completeTasks[indexPath.row]
+                      }
         let contextItem = UIContextualAction(style: .normal,
                                             title: "✓") {  (_, _, _) in // (contextualAction, view, boolValue)
            try! realm.write{
