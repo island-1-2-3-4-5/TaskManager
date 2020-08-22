@@ -29,4 +29,20 @@ class StorageManager {
     }
     
     
+    
+    //MARK: Для экрана с настройками
+    // необходимо лишь вызвать этот метод
+    static func saveSettings(_ settings: Settings){
+        
+        try! realm.write{
+            realm.add(settings)
+        }
+    }
+    
+    static func deleteSettings(_ settings: Settings) {
+        try! realm.write {
+            realm.delete(settings)
+        }
+    }
+    
 }

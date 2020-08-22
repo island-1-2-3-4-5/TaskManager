@@ -27,6 +27,8 @@
 		0CB967BC24D72CD400042F5D /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB967BB24D72CD400042F5D /* Task.swift */; };
 		0CB967BE24D72DC000042F5D /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB967BD24D72DC000042F5D /* StorageManager.swift */; };
 		0CBCF86C24EEE61A006B0FAB /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBCF86B24EEE61A006B0FAB /* UIColorExtension.swift */; };
+		0CBCF86E24F11384006B0FAB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBCF86D24F11384006B0FAB /* Settings.swift */; };
+		0CBCF87024F17A68006B0FAB /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBCF86F24F17A68006B0FAB /* Notifications.swift */; };
 		4E7F7145E5D8BC7DAD9356E3 /* Pods_TaskManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FED8D4F36D94CBF1D72907B /* Pods_TaskManager.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,8 @@
 		0CB967BB24D72CD400042F5D /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		0CB967BD24D72DC000042F5D /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		0CBCF86B24EEE61A006B0FAB /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		0CBCF86D24F11384006B0FAB /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		0CBCF86F24F17A68006B0FAB /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		1FED8D4F36D94CBF1D72907B /* Pods_TaskManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5152882E5774BC16AAF089 /* Pods-TaskManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskManager.debug.xcconfig"; path = "Target Support Files/Pods-TaskManager/Pods-TaskManager.debug.xcconfig"; sourceTree = "<group>"; };
 		B56B9EE44A64FCA63DA8567F /* Pods-TaskManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskManager.release.xcconfig"; path = "Target Support Files/Pods-TaskManager/Pods-TaskManager.release.xcconfig"; sourceTree = "<group>"; };
@@ -98,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				0C74855724DAE10E0003806C /* Extensions */,
+				0CBCF86F24F17A68006B0FAB /* Notifications.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -116,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				0CB967BB24D72CD400042F5D /* Task.swift */,
+				0CBCF86D24F11384006B0FAB /* Settings.swift */,
 				0CB967BD24D72DC000042F5D /* StorageManager.swift */,
 			);
 			path = Models;
@@ -330,6 +336,7 @@
 				0CB967BC24D72CD400042F5D /* Task.swift in Sources */,
 				0CB967B024D4485300042F5D /* MainViewCell.swift in Sources */,
 				0CB9679924D307DB00042F5D /* MainViewController.swift in Sources */,
+				0CBCF86E24F11384006B0FAB /* Settings.swift in Sources */,
 				0C74859724E062A30003806C /* NewViewModel.swift in Sources */,
 				0CB967BE24D72DC000042F5D /* StorageManager.swift in Sources */,
 				0C93FECE24D8507D00A4D072 /* DetailViewModel.swift in Sources */,
@@ -338,6 +345,7 @@
 				0C74858624DB357C0003806C /* DetailViewController.swift in Sources */,
 				0C48591024E813E8003C54F1 /* SettingsViewController.swift in Sources */,
 				0C74858824DC676F0003806C /* DateFormat.swift in Sources */,
+				0CBCF87024F17A68006B0FAB /* Notifications.swift in Sources */,
 				0CBCF86C24EEE61A006B0FAB /* UIColorExtension.swift in Sources */,
 				0C48591424E86BB1003C54F1 /* PasswordViewController.swift in Sources */,
 				0C1BE7AF24E444A10023F6AA /* TaskUserLocations.swift in Sources */,
