@@ -16,6 +16,8 @@ class SettingsViewController: UIViewController {
     var settingUp: Settings!
     let notifications = Notifications()
     var mainViewModel = MainViewModel()
+    var h = 0
+    var m = 0
 
    
     
@@ -132,6 +134,8 @@ class SettingsViewController: UIViewController {
     // эта функция вызывается когда мы включаем пререключатель для уведомлений
     func notification(){
         
+        guard settings.count != 0 else { return }
+        
         // outlet переключателя уведомлений
         if settings[0].remindersIsOn{
             // массив с записями из realm
@@ -140,36 +144,15 @@ class SettingsViewController: UIViewController {
         // перебираю записи начиная с самой ранней
         for i in 0..<mainViewModel.tasks.count{
 
-            var h = 0
-            var m = 0
+
             
+            alarmFormat()
             
             let task = mainViewModel.tasks[i]
             
-            if settings[0].numberSwitchIsOn == 0{
-                h = 0
-                m = 15
-            } else if settings[0].numberSwitchIsOn == 1{
-                h = 0
-                m = 30
-            } else if settings[0].numberSwitchIsOn == 2{
-                h = 1
-                m = 0
-            } else if settings[0].numberSwitchIsOn == 3{
-                h = 2
-                m = 0
-            } else if settings[0].numberSwitchIsOn == 4{
-                h = 8
-                m = 0
-            } else if settings[0].numberSwitchIsOn == 5{
-                h = 12
-                m = 0
-            } else if settings[0].numberSwitchIsOn == 6{
-                h = 24
-                m = 0
-            }
 
-            let identifire = "\(task.name)\(task.createdAt)"
+
+            let identifire = task.name + String(describing: task.createdAt)
             
             // отправка даты для срабатывания уведомления
             notifications.scheduleNotification(identifire: identifire, date: task.pickerDate!, h: h, m: m)
@@ -181,7 +164,30 @@ class SettingsViewController: UIViewController {
     }
     
     
-    
+    func alarmFormat(){
+        if settings[0].numberSwitchIsOn == 0{
+            h = 0
+            m = 15
+        } else if settings[0].numberSwitchIsOn == 1{
+            h = 0
+            m = 30
+        } else if settings[0].numberSwitchIsOn == 2{
+            h = 1
+            m = 0
+        } else if settings[0].numberSwitchIsOn == 3{
+            h = 2
+            m = 0
+        } else if settings[0].numberSwitchIsOn == 4{
+            h = 8
+            m = 0
+        } else if settings[0].numberSwitchIsOn == 5{
+            h = 12
+            m = 0
+        } else if settings[0].numberSwitchIsOn == 6{
+            h = 24
+            m = 0
+        }
+    }
     
     
     

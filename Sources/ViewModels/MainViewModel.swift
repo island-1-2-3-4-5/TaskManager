@@ -20,8 +20,7 @@ class MainViewModel {
     var sectionCount: Int = 3
     var alert: UIAlertController!
     let locationManager = CLLocationManager()
-   // var date = Date()
-   var upateUI = Timer()
+
     
     //MARK: AlertController
 
@@ -73,15 +72,26 @@ class MainViewModel {
 
         let date = Date()
 
-                for i in 0..<tasks.count{
-                    let count = tasks.count
-                let task = tasks[i]
-                try! realm.write{
-                        task.date = date
-                    if tasks.count != count{
+        for i in 0..<tasks.count{
+                    
+            let count = tasks.count
+            let task = tasks[i]
+            try! realm.write{
+                
+                task.date = date
+                if tasks.count != count{
+                    
+                    let settings = SettingsViewController()
+                    settings.settings = realm.objects(Settings.self)
+                    settings.notification()
                     tableView.reloadData()
-                    }}
-                      }
+                        
+                }
+                    
+            }
+                    
+                    
+        }
         
     }
     
@@ -145,6 +155,12 @@ class MainViewModel {
         return dates.formatDate(date)
     }
 
+    
+    func formatPickerDate(_ pickerDate: Date, _ h: Int, _ m: Int) -> DateComponents{
+        let dates = DateFormat()
+        
+       return dates.formatPickerDate(pickerDate, h, m)
+    }
     
     
 }

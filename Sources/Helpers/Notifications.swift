@@ -31,20 +31,24 @@ class Notifications: NSObject, UNUserNotificationCenterDelegate {
      
     func scheduleNotification(identifire: String, date: Date, h: Int, m: Int) {
          
-         let content = UNMutableNotificationContent()
-         content.title = "Уведомление"
-         content.body = "Задача истечет через \(h) ч \(m) минут"
-         content.sound = UNNotificationSound.default
-         content.badge = 1
-         var dateComponent = DateComponents()
-         let calendar = Calendar.current
-         let hour = calendar.component(.hour, from: date) - h
-         let minute = calendar.component(.minute, from: date) - m
-         dateComponent.hour = hour
-         dateComponent.minute = minute
+        let content = UNMutableNotificationContent()
+        content.title = "Уведомление"
+        content.body = "Задача истечет через \(h) ч \(m) минут"
+        content.sound = UNNotificationSound.default
+        content.badge = 1
+        
+        
+        var dateComponent = DateComponents()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date) - h
+        let minute = calendar.component(.minute, from: date) - m
+        let day = calendar.component(.day, from: date)
+        dateComponent.hour = hour
+        dateComponent.minute = minute
+        dateComponent.day = day
          
         // для этого триггера устанавливаем дату срабатывания, она приходит из функции notification
-         let anotherTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: true)
+        let anotherTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: true)
          
         
         
@@ -64,12 +68,14 @@ class Notifications: NSObject, UNUserNotificationCenterDelegate {
     
     
     
+    
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         completionHandler([.alert, .sound])
+
     }
     
     func userNotificationCenter(

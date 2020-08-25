@@ -29,12 +29,6 @@ class MainViewController: UIViewController{
         super.viewDidLoad()
 
 
-        
-
-
-        
-        
-        
         checkLocationEnable()
 
         // делаем отображение базы данных, делаем запрос к отображаемому типу данных Task
@@ -54,11 +48,27 @@ class MainViewController: UIViewController{
         settings.settings = realm.objects(Settings.self)
         
         settings.notification()
-        
+        tableView.refreshControl = myRefreshControl
+
     }
     
 
+    //MARK: Обновление контента
+       let myRefreshControl: UIRefreshControl = {
+           let refreshControl = UIRefreshControl()
+           refreshControl.addTarget(self,
+                                    action: #selector(refresh(sender:)),
+                                    for: .valueChanged)
+           return refreshControl
+       }()
         
+    @objc private func refresh(sender: UIRefreshControl){
+
+        tableView.reloadData()
+        settings.notification()
+
+        sender.endRefreshing()
+    }
     
 
     @objc func update(){
@@ -287,8 +297,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 0, range: NSMakeRange(0, attributeString.length))
             cell.descriptionLabel.attributedText = attributeString
             cell.descriptionLabel.textColor = .black
-            cell.dataLabel.textColor = UIColor(rgb: 0xEB5757)
-            cell.dataLabel.text = mainViewModel.dateUpdate(task.pickerDate!)
+            cell.dateLabel.textColor = UIColor(rgb: 0xEB5757)
+            cell.dateLabel.text = mainViewModel.dateUpdate(task.pickerDate!)
 
             
             
@@ -304,8 +314,25 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 0, range: NSMakeRange(0, attributeString.length))
             cell.descriptionLabel.attributedText = attributeString
             cell.descriptionLabel.textColor = .black
-            cell.dataLabel.textColor = UIColor(rgb: 0x219653)
-            cell.dataLabel.text = mainViewModel.dateInHourUpdate(task.pickerDate!)
+            
+            
+            
+            
+
+            let pickerDate = Calendar.current.date(from:             mainViewModel.formatPickerDate(task.pickerDate!, settings.h, settings.m))!
+
+            let date = Calendar.current.date(from:             mainViewModel.formatPickerDate(task.date, 0, 0))!
+            
+            
+            if date < pickerDate {
+                cell.dateLabel.textColor = UIColor(rgb: 0x219653)
+                cell.dateLabel.text = mainViewModel.dateUpdate(task.pickerDate!)
+            } else {
+                cell.dateLabel.textColor = UIColor(rgb: 0xF2994A)
+                cell.dateLabel.text = mainViewModel.dateUpdate(task.pickerDate!)
+            }
+            
+
 
             
             
@@ -320,8 +347,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
             cell.descriptionLabel.attributedText = attributeString
             cell.descriptionLabel.textColor = .lightGray
-            cell.dataLabel.textColor = UIColor(rgb: 0xBDBDBD)
-            cell.dataLabel.text = mainViewModel.dateUpdate(task.pickerDate!)
+            cell.dateLabel.textColor = UIColor(rgb: 0xBDBDBD)
+            cell.dateLabel.text = mainViewModel.dateUpdate(task.pickerDate!)
 
         }
         

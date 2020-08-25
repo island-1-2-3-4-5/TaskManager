@@ -27,6 +27,21 @@ class DateFormat{
     }
     
     
+    func formatPickerDate(_ pickerDate: Date, _ h: Int, _ m: Int) -> DateComponents{
+        var dateComponent = DateComponents()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: pickerDate) - h
+        let minute = calendar.component(.minute, from: pickerDate) - m
+//        let day = calendar.component(.day, from: pickerDate)
+
+        dateComponent.hour = hour
+        dateComponent.minute = minute
+//        dateComponent.day = day
+        
+        return dateComponent
+    }
+    
+    
     
     
 }

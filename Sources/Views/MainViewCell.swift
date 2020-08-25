@@ -11,7 +11,7 @@ import UIKit
 class MainViewCell: UITableViewCell {
     
     
-    @IBOutlet weak var dataLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel! 
     
    

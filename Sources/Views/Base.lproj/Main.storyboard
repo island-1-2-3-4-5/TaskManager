@@ -85,7 +85,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <connections>
                                             <outlet property="cellViewFormat" destination="ZvO-bQ-r21" id="5OP-gY-NO9"/>
-                                            <outlet property="dataLabel" destination="wqR-qw-jGe" id="HIN-J8-ONP"/>
+                                            <outlet property="dateLabel" destination="wqR-qw-jGe" id="HIN-J8-ONP"/>
                                             <outlet property="descriptionLabel" destination="mie-yo-Efd" id="36m-Rf-TZa"/>
                                             <segue destination="SZf-2P-rDE" kind="show" identifier="showDetail" id="K5e-c7-Xh6"/>
                                         </connections>
