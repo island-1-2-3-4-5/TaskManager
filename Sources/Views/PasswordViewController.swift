@@ -34,6 +34,20 @@ class PasswordViewController: UITableViewController {
                                                          y: 0,
                                                          width: tableView.frame.size.width,
                                                          height: 1))
+        
+        // При нажатии на экран будет срабатывать метод скрывания клавиатуры
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        
+        self.tableView.addGestureRecognizer(tapGesture)
+
+    }
+    
+    
+    @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+        oldPasswordTextField.resignFirstResponder()
+        newPasswordTextField.resignFirstResponder()
+        repeatPasswordTextField.resignFirstResponder()
+
     }
 
     
@@ -55,15 +69,9 @@ class PasswordViewController: UITableViewController {
 
 
 extension PasswordViewController: UITextFieldDelegate{
-    //скрываем клавиатуру при нажатии done
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
     
     
     
-    // блокируем кнопку save
     @objc private func oldTextFieldChanged(){
         if oldPasswordTextField.text?.isEmpty == false{
             oldPasswordLabel.isHidden = false

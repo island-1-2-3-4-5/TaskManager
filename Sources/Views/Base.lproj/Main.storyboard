@@ -785,10 +785,11 @@
         <scene sceneID="QN5-66-ygK">
             <objects>
                 <tableViewController id="6ca-2X-7Hg" customClass="PasswordViewController" customModule="TaskManager" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="94h-j7-c9a">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="94h-j7-c9a">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <inset key="separatorInset" minX="24" minY="0.0" maxX="24" maxY="0.0"/>
                         <sections>
                             <tableViewSection id="zcf-gC-4V9">
                                 <cells>
@@ -802,7 +803,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Старый пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="igD-9Q-CJI">
                                                     <rect key="frame" x="24" y="50" width="366" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="numberPad" returnKeyType="done" secureTextEntry="YES"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="6ca-2X-7Hg" id="TWO-Pu-Z6k"/>
                                                     </connections>
@@ -834,7 +835,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Новый пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LlD-fb-28i">
                                                     <rect key="frame" x="24" y="50" width="366" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="numberPad" returnKeyType="done" secureTextEntry="YES"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="6ca-2X-7Hg" id="Iwt-zT-bR1"/>
                                                     </connections>
@@ -866,7 +867,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Повторите новый пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T8z-x8-mj4">
                                                     <rect key="frame" x="24" y="50" width="366" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="numberPad" returnKeyType="done" secureTextEntry="YES"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="6ca-2X-7Hg" id="eew-b3-i6X"/>
                                                     </connections>
