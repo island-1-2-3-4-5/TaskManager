@@ -29,11 +29,11 @@ class Notifications: NSObject, UNUserNotificationCenterDelegate {
          }
      }
      
-    func scheduleNotification(notifaicationType: String, date: Date, h: Int, m: Int) {
+    func scheduleNotification(identifire: String, date: Date, h: Int, m: Int) {
          
          let content = UNMutableNotificationContent()
-         content.title = notifaicationType
-         content.body = notifaicationType
+         content.title = "Уведомление"
+         content.body = "Задача истечет через \(h) ч \(m) минут"
          content.sound = UNNotificationSound.default
          content.badge = 1
          var dateComponent = DateComponents()
@@ -46,7 +46,9 @@ class Notifications: NSObject, UNUserNotificationCenterDelegate {
         // для этого триггера устанавливаем дату срабатывания, она приходит из функции notification
          let anotherTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: true)
          
-         let identifire = "Local Notification"
+        
+        
+        
          let request = UNNotificationRequest(identifier: identifire,
                                              content: content,
                                              trigger: anotherTrigger)

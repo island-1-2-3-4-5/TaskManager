@@ -15,8 +15,8 @@ class SettingsViewController: UIViewController {
     var settings: Results<Settings>!
     var settingUp: Settings!
     let notifications = Notifications()
-    
-    var tasks: Results<Task>!
+    var mainViewModel = MainViewModel()
+
    
     
     //MARK: Outlets
@@ -35,8 +35,8 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         settings = realm.objects(Settings.self)
 
-        tasks = realm.objects(Task.self).filter("isCompleted = false AND pickerDate > date").sorted(byKeyPath: "pickerDate", ascending: false)
-        
+
+        mainViewModel.tasksData()
         setUpScreen()
         
         notification()
@@ -133,17 +133,18 @@ class SettingsViewController: UIViewController {
     func notification(){
         
         // outlet переключателя уведомлений
-        if reminderSwitchOutlet.isOn{
+        if settings[0].remindersIsOn{
             // массив с записями из realm
-        guard tasks.count != 0 else { return }
+        mainViewModel.tasksData()
+        guard mainViewModel.tasks.count != 0 else { return }
         // перебираю записи начиная с самой ранней
-        for i in 0..<tasks.count{
+        for i in 0..<mainViewModel.tasks.count{
 
             var h = 0
             var m = 0
             
             
-            let task = tasks[i]
+            let task = mainViewModel.tasks[i]
             
             if settings[0].numberSwitchIsOn == 0{
                 h = 0
@@ -154,13 +155,24 @@ class SettingsViewController: UIViewController {
             } else if settings[0].numberSwitchIsOn == 2{
                 h = 1
                 m = 0
+            } else if settings[0].numberSwitchIsOn == 3{
+                h = 2
+                m = 0
+            } else if settings[0].numberSwitchIsOn == 4{
+                h = 8
+                m = 0
+            } else if settings[0].numberSwitchIsOn == 5{
+                h = 12
+                m = 0
+            } else if settings[0].numberSwitchIsOn == 6{
+                h = 24
+                m = 0
             }
+
+            let identifire = "\(task.name)\(task.createdAt)"
             
-            
-            // эта запись появляется в теле уведомления
-            let notificationType = "Уведомление!"
             // отправка даты для срабатывания уведомления
-            notifications.scheduleNotification(notifaicationType: notificationType, date: task.pickerDate!, h: h,m: m)
+            notifications.scheduleNotification(identifire: identifire, date: task.pickerDate!, h: h, m: m)
             
             }
             

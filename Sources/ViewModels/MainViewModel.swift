@@ -88,12 +88,12 @@ class MainViewModel {
      func readTasksAndUpateUI(_ tableView: UITableView){
 
     
-          tasks = realm.objects(Task.self).filter("isCompleted = false AND pickerDate > date").sorted(byKeyPath: "createdAt", ascending: false)
+          tasks = realm.objects(Task.self).filter("isCompleted = false AND pickerDate > date").sorted(byKeyPath: "pickerDate", ascending: true)
     
           
-          completeTasks = realm.objects(Task.self).filter("isCompleted = true").sorted(byKeyPath: "createdAt", ascending: false)
+          completeTasks = realm.objects(Task.self).filter("isCompleted = true").sorted(byKeyPath: "pickerDate", ascending: true)
         
-          expiredTasks = realm.objects(Task.self).filter("isCompleted = false AND pickerDate < date").sorted(byKeyPath: "createdAt", ascending: false)
+          expiredTasks = realm.objects(Task.self).filter("isCompleted = false AND pickerDate < date").sorted(byKeyPath: "pickerDate", ascending: true)
             
         tableView.reloadData()
 

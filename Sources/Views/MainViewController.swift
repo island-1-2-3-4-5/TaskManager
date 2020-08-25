@@ -18,7 +18,7 @@ class MainViewController: UIViewController{
    
     var mainViewModel = MainViewModel()
     var tableViewUpdate = Timer()
-
+    var settings = SettingsViewController()
     
     //MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -28,6 +28,12 @@ class MainViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
+        
+
+
+        
+        
         
         checkLocationEnable()
 
@@ -45,6 +51,10 @@ class MainViewController: UIViewController{
         
         updateIndicator()
         
+        settings.settings = realm.objects(Settings.self)
+        
+        settings.notification()
+        
     }
     
 
@@ -53,9 +63,15 @@ class MainViewController: UIViewController{
 
     @objc func update(){
         mainViewModel.updateUI(tableView)
-
+        
+        
     }
 
+    
+
+    
+    
+    
     
     //MARK: - Обновление индикатора
     func updateIndicator() {
@@ -108,6 +124,7 @@ class MainViewController: UIViewController{
         // перезагружаем таблицу после добавления объекта и обновляем индикатор
         updateIndicator()
         tableView.reloadData()
+        settings.notification()
        }
     
     
@@ -122,6 +139,7 @@ class MainViewController: UIViewController{
         tableView.reloadData()
         // Обновляем индикатор
         updateIndicator()
+        settings.notification()
         
     }
     // Метод завершения задачи из DetailViewController
@@ -134,6 +152,7 @@ class MainViewController: UIViewController{
         tableView.reloadData()
         // Обновляем индикатор
         updateIndicator()
+        settings.notification()
         
     }
     
@@ -347,6 +366,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                                                     
                                                     self.updateIndicator()
                                                     self.mainViewModel.readTasksAndUpateUI(self.tableView)
+                                                    self.settings.notification()
+
                                                         
                                    
                                                     
@@ -378,6 +399,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
             self.tableView.reloadData()
             self.updateIndicator()
+            self.settings.notification()
                      }
 
 
