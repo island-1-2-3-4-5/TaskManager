@@ -28,7 +28,7 @@ class SettingViewModel {
     func updateUI() {
         tasks = realm.objects(Task.self)
         settings = realm.objects(Settings.self)
-        tasks = realm.objects(Task.self).filter("isCompleted = false AND pickerDate > date").sorted(byKeyPath: "pickerDate", ascending: true)
+         tasks = realm.objects(Task.self).filter("isCompleted = false AND pickerDate > date AND whatsDay =  %@", "сегодня").sorted(byKeyPath: "pickerDate", ascending: true)
     }
     
     //MARK: Запись
