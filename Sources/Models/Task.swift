@@ -22,9 +22,11 @@ class Task: Object {
     @objc dynamic var longitude = 0.0
     @objc dynamic var pickerDate: Date?
     @objc dynamic var date = Date()
+    @objc dynamic var whatsDay: String?
+
     
     // вспомогательный инициализатор (не является обязательным), с помощью него вносим новые значения в базу
-    convenience init(name: String, descriptionTask: String?, createdAt: Date!, isCompleted: Bool, latitude: Double, longitude: Double, pickerDate: Date?){
+    convenience init(name: String, descriptionTask: String?, createdAt: Date!, whatsDay: String?, isCompleted: Bool, latitude: Double, longitude: Double, pickerDate: Date?){
         self.init() //  сначала инициализируется обычный инициализатор а после присваиваем новые значения
         self.name = name
         self.descriptionTask = descriptionTask
@@ -33,6 +35,7 @@ class Task: Object {
         self.latitude = latitude
         self.longitude = longitude
         self.pickerDate = pickerDate
+        self.whatsDay = whatsDay
     }
     
     

@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let schemaVersion: UInt64 = 25
+        let schemaVersion: UInt64 = 26
 
               
               // добавляем это для того, чтобы можно было изменять модель данных без удаления самих данных

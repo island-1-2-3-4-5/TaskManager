@@ -79,10 +79,32 @@ class NewViewController: UIViewController {
     // MARK: - Сохраняем место
     func saveTask() {
         
+        let formatDate = DateFormat()
+        
+        let pickerDate = formatDate.formatPickerDate(pickerOutlet.date, 0, 0)
+
+        let dates = formatDate.formatPickerDate(newViewModel.date, 0, 0)
+        
+        let day = pickerDate.day! - dates.day!
+        var whatsDay = ""
+        
+        if day == 0 {
+            whatsDay = "сегодня"
+        } else if day == 1 {
+            whatsDay = "завтра"
+        } else if day == 2 {
+            whatsDay = "послезавтра"
+        } else if day >= 3 {
+            whatsDay = "В другие дни"
+        }
+        
+        
+
+        
         // инициализируем с помощью вспомогательного инициализатора
         let newTask = Task(name:nameTextView.text!,
                            descriptionTask: descriptionTextView.text,
-                           createdAt: newViewModel.date,
+                           createdAt: newViewModel.date, whatsDay: whatsDay,
                            isCompleted: false, latitude: newViewModel.latitude ?? 0.0, longitude: newViewModel.longitude ?? 0.0, pickerDate: pickerOutlet.date)
 
         if newViewModel.currentTask != nil {

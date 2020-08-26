@@ -27,6 +27,7 @@ class SettingViewModel {
     
     func updateUI() {
         tasks = realm.objects(Task.self)
+        settings = realm.objects(Settings.self)
         tasks = realm.objects(Task.self).filter("isCompleted = false AND pickerDate > date").sorted(byKeyPath: "pickerDate", ascending: true)
     }
     
@@ -45,15 +46,15 @@ class SettingViewModel {
     
     
     // эта функция вызывается когда мы включаем пререключатель для уведомлений
-
+//MARK: Уведомления
     func notification(){
-        
+        updateUI()
+
         guard settings.count != 0 else { return }
         
         // outlet переключателя уведомлений
         if settings[0].remindersIsOn{
             // массив с записями из realm
-            updateUI()
             
             
         guard tasks.count != 0 else { return }
@@ -78,6 +79,7 @@ class SettingViewModel {
         }
         
     }
+    
     
     
     

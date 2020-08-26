@@ -44,9 +44,7 @@ class MainViewController: UIViewController{
         tableViewUpdate  = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         
         updateIndicator()
-        
-        settingsViewModel.settings = realm.objects(Settings.self)
-        
+                
         settingsViewModel.notification()
 
         tableView.refreshControl = myRefreshControl
@@ -106,8 +104,19 @@ class MainViewController: UIViewController{
 
            if indexPath.section == 0 {
             task = mainViewModel.expiredTasks[indexPath.row]
-           }else if indexPath.section == 1{
+           } else if indexPath.section == 1{
+            return
+           }else if indexPath.section == 2{
             task = mainViewModel.tasks[indexPath.row]
+            
+           }else if indexPath.section == 3{
+            task = mainViewModel.tomorrowTasks[indexPath.row]
+            
+           }else if indexPath.section == 4{
+            task = mainViewModel.afterTomorrowTasks[indexPath.row]
+            
+           }else if indexPath.section == 5{
+            task = mainViewModel.otherTasks[indexPath.row]
             
            }else{
             task = mainViewModel.completeTasks[indexPath.row]
@@ -222,14 +231,33 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK: Заголовок секции
    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
- 
+    if section <= 1{
     if let headerView = view as? UITableViewHeaderFooterView {
         headerView.contentView.backgroundColor = .white
         headerView.backgroundView?.backgroundColor = .black
         headerView.textLabel?.textColor = .black
         headerView.textLabel?.font = UIFont(name: "SFUIText-Regular", size: 22.0)
     }
-   }
+    } else if (section >= 2) && (section <= 5){
+        if let headerView = view as? UITableViewHeaderFooterView {
+             headerView.contentView.backgroundColor = .white
+             headerView.backgroundView?.backgroundColor = .black
+             headerView.textLabel?.textColor = UIColor(rgb: 0x4F4F4F)
+             headerView.textLabel?.font = UIFont(name: "SFUIText-Regular", size: 18.0)
+    }
+    } else {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.contentView.backgroundColor = .white
+            headerView.backgroundView?.backgroundColor = .black
+            headerView.textLabel?.textColor = .black
+            headerView.textLabel?.font = UIFont(name: "SFUIText-Regular", size: 22.0)
+        }
+
+    }
+
+    }
+    
+        
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
    
@@ -237,6 +265,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return mainViewModel.titleForExpiredSection()
         } else if section == 1{
             return mainViewModel.titleForComingSection()
+        } else if section == 2{
+            return mainViewModel.titleForTodaySection()
+        } else if section == 3{
+            return mainViewModel.titleForTomorrowSection()
+        } else if section == 4{
+            return mainViewModel.titleAfterTomorrowSection()
+        } else if section == 5{
+            return mainViewModel.titleOtherSection()
         }
            return mainViewModel.titleForSection()
         
@@ -250,9 +286,24 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             return 0
         } else if section == 1 && mainViewModel.tasks.count == 0{
             return 0
-        } else if section == 2 && mainViewModel.completeTasks.count == 0{
+        } else if section == 2 && mainViewModel.tasks.count == 0{
+            return 0
+        } else if section == 3 && mainViewModel.tomorrowTasks.count == 0{
+            return 0
+        } else if section == 4 && mainViewModel.afterTomorrowTasks.count == 0{
+            return 0
+        } else if section == 5 && mainViewModel.otherTasks.count == 0{
+            return 0
+        } else if section == 6 && mainViewModel.completeTasks.count == 0{
             return 0
         }
+        
+        if section == 1 && mainViewModel.tasks.count != 0 {
+            return 35
+        } else if section == 2 && mainViewModel.tasks.count != 0{
+            return 45
+        }
+        
         return mainViewModel.height
     }
     
@@ -267,8 +318,19 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return mainViewModel.expiredTasks.count
         
       } else if section == 1{
+        return 0
+        
+      } else if section == 2{
         return mainViewModel.tasks.count
         
+      } else if section == 3{
+        return mainViewModel.tomorrowTasks.count
+        
+      } else if section == 4{
+        return mainViewModel.afterTomorrowTasks.count
+        
+      } else if section == 5{
+        return mainViewModel.otherTasks.count
       }
         
         return mainViewModel.completeTasks.count
@@ -303,7 +365,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             
             
             
-        } else if indexPath.section == 1{
+        } else if indexPath.section == 2{
             
             
             
@@ -326,17 +388,52 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             
             if date < pickerDate {
                 cell.dateLabel.textColor = UIColor(rgb: 0x219653)
-                cell.dateLabel.text = mainViewModel.dateUpdate(task.pickerDate!)
+                cell.dateLabel.text = mainViewModel.dateInHourUpdate(task.pickerDate!)
             } else {
                 cell.dateLabel.textColor = UIColor(rgb: 0xF2994A)
-                cell.dateLabel.text = mainViewModel.dateUpdate(task.pickerDate!)
+                cell.dateLabel.text = mainViewModel.dateInHourUpdate(task.pickerDate!)
             }
             
-
-
+        } else if indexPath.section == 3{
+            
+                    task = mainViewModel.tomorrowTasks[indexPath.row]
+            
+                    // Снимаем зачеркивание
+                    let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: task.name)
+                    attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 0, range: NSMakeRange(0, attributeString.length))
+                    cell.descriptionLabel.attributedText = attributeString
+                    cell.descriptionLabel.textColor = .black
+            cell.dateLabel.textColor = UIColor(rgb: 0x219653)
+            cell.dateLabel.text = mainViewModel.dateInHourUpdate(task.pickerDate!)
             
             
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 4{
+                    task = mainViewModel.afterTomorrowTasks[indexPath.row]
+            
+                    // Снимаем зачеркивание
+                    let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: task.name)
+                    attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 0, range: NSMakeRange(0, attributeString.length))
+                    cell.descriptionLabel.attributedText = attributeString
+                    cell.descriptionLabel.textColor = .black
+
+            cell.dateLabel.textColor = UIColor(rgb: 0x219653)
+            cell.dateLabel.text = mainViewModel.dateInHourUpdate(task.pickerDate!)
+            
+            
+            
+        } else if indexPath.section == 5{
+                    task = mainViewModel.otherTasks[indexPath.row]
+            
+                    // Снимаем зачеркивание
+                    let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: task.name)
+                    attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 0, range: NSMakeRange(0, attributeString.length))
+                    cell.descriptionLabel.attributedText = attributeString
+                    cell.descriptionLabel.textColor = .black
+            
+            cell.dateLabel.textColor = UIColor(rgb: 0x219653)
+            cell.dateLabel.text = mainViewModel.dateInHourUpdate(task.pickerDate!)
+            
+        } else if indexPath.section == 6 {
             
             
             
@@ -376,12 +473,21 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let task: Task!
         if indexPath.section == 0 {
          task = mainViewModel.expiredTasks[indexPath.row]
-        }else if indexPath.section == 1{
-                    task = mainViewModel.tasks[indexPath.row]
-                }
-                else{
-                    task = mainViewModel.completeTasks[indexPath.row]
-                }
+        } else if indexPath.section == 2{
+         task = mainViewModel.tasks[indexPath.row]
+         
+        }else if indexPath.section == 3{
+         task = mainViewModel.tomorrowTasks[indexPath.row]
+         
+        }else if indexPath.section == 4{
+         task = mainViewModel.afterTomorrowTasks[indexPath.row]
+         
+        }else if indexPath.section == 5{
+         task = mainViewModel.otherTasks[indexPath.row]
+         
+        }else{
+         task = mainViewModel.completeTasks[indexPath.row]
+         }
         
         
         
@@ -410,14 +516,23 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
        let task: Task!
-              if indexPath.section == 0 {
+            if indexPath.section == 0 {
                task = mainViewModel.expiredTasks[indexPath.row]
-              }else if indexPath.section == 1{
-                          task = mainViewModel.tasks[indexPath.row]
-                      }
-                      else{
-                          task = mainViewModel.completeTasks[indexPath.row]
-                      }
+              }else if indexPath.section == 2{
+               task = mainViewModel.tasks[indexPath.row]
+               
+              }else if indexPath.section == 3{
+               task = mainViewModel.tomorrowTasks[indexPath.row]
+               
+              }else if indexPath.section == 4{
+               task = mainViewModel.afterTomorrowTasks[indexPath.row]
+               
+              }else if indexPath.section == 5{
+               task = mainViewModel.otherTasks[indexPath.row]
+               
+              }else{
+               task = mainViewModel.completeTasks[indexPath.row]
+               }
         let contextItem = UIContextualAction(style: .normal,
                                             title: "✓") {  (_, _, _) in // (contextualAction, view, boolValue)
            try! realm.write{

@@ -134,10 +134,10 @@
 			children = (
 				0CB9679824D307DB00042F5D /* MainViewController.swift */,
 				0CB967B324D70A3F00042F5D /* NewViewController.swift */,
-				0C48591324E86BB1003C54F1 /* PasswordViewController.swift */,
 				0C74858524DB357C0003806C /* DetailViewController.swift */,
-				0CB967AF24D4485300042F5D /* MainViewCell.swift */,
 				0C48590F24E813E8003C54F1 /* SettingsViewController.swift */,
+				0C48591324E86BB1003C54F1 /* PasswordViewController.swift */,
+				0CB967AF24D4485300042F5D /* MainViewCell.swift */,
 				0CB9679A24D307DB00042F5D /* Main.storyboard */,
 				0CB9679F24D307DE00042F5D /* LaunchScreen.storyboard */,
 			);

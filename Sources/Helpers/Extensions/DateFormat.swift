@@ -32,11 +32,13 @@ class DateFormat{
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: pickerDate) - h
         let minute = calendar.component(.minute, from: pickerDate) - m
-//        let day = calendar.component(.day, from: pickerDate)
+        let day = calendar.component(.day, from: pickerDate)
+        let month = calendar.component(.month, from: pickerDate)
 
         dateComponent.hour = hour
         dateComponent.minute = minute
-//        dateComponent.day = day
+        dateComponent.day = day
+        dateComponent.month = month
         
         return dateComponent
     }
