@@ -55,11 +55,6 @@ class NewViewController: UIViewController {
 
     
     
-    
-    
-    
-    
-    
     //MARK: Locations
     func setupManager(){
         newViewModel.locationManager.delegate = self
@@ -100,7 +95,6 @@ class NewViewController: UIViewController {
         
         
 
-        
         // инициализируем с помощью вспомогательного инициализатора
         let newTask = Task(name:nameTextView.text!,
                            descriptionTask: descriptionTextView.text,

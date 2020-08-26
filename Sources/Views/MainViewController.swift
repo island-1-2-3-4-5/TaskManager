@@ -75,11 +75,7 @@ class MainViewController: UIViewController{
         
     }
 
-    
 
-    
-    
-    
     
     //MARK: - Обновление индикатора
     func updateIndicator() {
@@ -215,15 +211,6 @@ class MainViewController: UIViewController{
 
 
 
-
-
-
-
-
-
-
-
-
      // MARK: - extension Tableview
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -257,7 +244,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
     }
     
-        
+//MARK: Название секции
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
    
@@ -312,6 +299,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return mainViewModel.sectionCount
        }
 
+    
+    
     //MARK: Количество строк
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       if section == 0{
@@ -338,17 +327,13 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     
-    
-    
-    
-        
     //MARK: - Конфигурация ячейки
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainViewCell
         
         var task: Task!
         
-        
+        //MARK: Секция 0
         if indexPath.section == 0{
             
             
@@ -364,11 +349,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
             
             
-            
+        //MARK: Секция 2
         } else if indexPath.section == 2{
-            
-            
-            
+
             task = mainViewModel.tasks[indexPath.row]
     
             // Снимаем зачеркивание
@@ -376,10 +359,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 0, range: NSMakeRange(0, attributeString.length))
             cell.descriptionLabel.attributedText = attributeString
             cell.descriptionLabel.textColor = .black
-            
-            
-            
-            
+
 
             let pickerDate = Calendar.current.date(from:             mainViewModel.formatPickerDate(task.pickerDate!, settingsViewModel.h, settingsViewModel.m))!
 
@@ -394,6 +374,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.dateLabel.text = mainViewModel.dateInHourUpdate(task.pickerDate!)
             }
             
+        //MARK: Секция 3
         } else if indexPath.section == 3{
             
                     task = mainViewModel.tomorrowTasks[indexPath.row]
@@ -406,7 +387,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             cell.dateLabel.textColor = UIColor(rgb: 0x219653)
             cell.dateLabel.text = mainViewModel.dateInHourUpdate(task.pickerDate!)
             
-            
+        //MARK: Секция 4
         } else if indexPath.section == 4{
                     task = mainViewModel.afterTomorrowTasks[indexPath.row]
             
@@ -420,7 +401,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             cell.dateLabel.text = mainViewModel.dateInHourUpdate(task.pickerDate!)
             
             
-            
+        //MARK: Секция 5
         } else if indexPath.section == 5{
                     task = mainViewModel.otherTasks[indexPath.row]
             
@@ -432,11 +413,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             
             cell.dateLabel.textColor = UIColor(rgb: 0x219653)
             cell.dateLabel.text = mainViewModel.dateInHourUpdate(task.pickerDate!)
-            
+        //MARK: Секция 6
         } else if indexPath.section == 6 {
-            
-            
-            
+
             task = mainViewModel.completeTasks[indexPath.row]
             
             // устанавливаем формат записи в завершенных
@@ -448,10 +427,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             cell.dateLabel.text = mainViewModel.dateUpdate(task.pickerDate!)
 
         }
-        
-
-
-        
+  
         return cell
     }
 

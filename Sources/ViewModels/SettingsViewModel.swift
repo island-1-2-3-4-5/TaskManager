@@ -82,7 +82,7 @@ class SettingViewModel {
     
     
     
-    
+    //MARK: За сколько оповещать
     func alarmFormat(){
         if settings[0].numberSwitchIsOn == 0{
             h = 0

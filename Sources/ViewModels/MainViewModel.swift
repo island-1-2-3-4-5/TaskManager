@@ -49,12 +49,8 @@ class MainViewModel {
         return alert
     }
     
-    
-    
-    
-    
-    
-    // Подгрузка данных из realm
+
+    //MARK: Подгрузка данных из realm
     func tasksData() {
         allTasks = realm.objects(Task.self)
         tasks = realm.objects(Task.self)
@@ -74,11 +70,9 @@ class MainViewModel {
     }
     
     
-
-    
-    
+//MARK: Обновление интерфейса
+    // эта функция вызывается раз в секунду в MainViewController
     func updateUI(_ tableView: UITableView) {
-
 
         let date = Date()
 
@@ -87,8 +81,7 @@ class MainViewModel {
             let count = tasks.count
             let task = allTasks[i]
             try! realm.write{
-                
-                
+                            
                 let pickerDate = formatPickerDate(task.pickerDate!, 0, 0)
 
                 let dates = formatPickerDate(task.date, 0, 0)
@@ -114,11 +107,12 @@ class MainViewModel {
                     
             }
                     
-                    
         }
         
     }
     
+    
+    //MARK: Фильтрация массивов
      func readTasksAndUpateUI(_ tableView: UITableView){
 
     
@@ -141,7 +135,7 @@ class MainViewModel {
 
     
     
-    //MARK: Заголовки
+    //MARK: Заголовок устаревшие
     func titleForExpiredSection() -> String{
        if expiredTasks.count == 0{
                  title = ""
@@ -151,6 +145,7 @@ class MainViewModel {
            return title
        }
 
+    //MARK: Заголовок предстоящие
     func titleForComingSection() -> String{
        if tasks.count == 0{
                  title = ""
@@ -159,7 +154,7 @@ class MainViewModel {
              }
            return title
        }
-    
+    //MARK: Заголовок сегодня
     func titleForTodaySection() -> String{
        if tasks.count == 0{
                  title = ""
@@ -170,7 +165,7 @@ class MainViewModel {
              }
            return title
        }
-    
+    //MARK: Заголовок завтра
     func titleForTomorrowSection() -> String{
        if tomorrowTasks.count == 0{
                  title = ""
@@ -183,7 +178,7 @@ class MainViewModel {
              }
            return title
        }
-    
+    //MARK: Заголовок послезавтра
     func titleAfterTomorrowSection() -> String{
        if afterTomorrowTasks.count == 0{
                  title = ""
@@ -195,7 +190,7 @@ class MainViewModel {
              }
            return title
        }
-    
+    //MARK: Заголовок остальные
     func titleOtherSection() -> String{
        if otherTasks.count == 0{
                  title = ""
@@ -205,7 +200,7 @@ class MainViewModel {
            return title
        }
     
-    
+    //MARK: Заголовок завершенные
     func titleForSection() -> String{
     if completeTasks.count == 0{
               title = ""
@@ -216,7 +211,7 @@ class MainViewModel {
     }
     
     
-    
+    //MARK: Конвертация месяца
     func month(_ month: Int) -> String {
         if month == 1{
             return "января"
