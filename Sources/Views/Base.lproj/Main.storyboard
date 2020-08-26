@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T0R-qE-ooy">
-                                <rect key="frame" x="0.0" y="148" width="414" height="588"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="596"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="separatorColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -113,7 +113,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="T0R-qE-ooy" firstAttribute="top" secondItem="om2-pP-Ykg" secondAttribute="bottom" constant="32" id="43r-0N-2Mv"/>
+                            <constraint firstItem="T0R-qE-ooy" firstAttribute="top" secondItem="om2-pP-Ykg" secondAttribute="bottom" constant="24" id="43r-0N-2Mv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="T0R-qE-ooy" secondAttribute="trailing" id="82M-rI-hNF"/>
                             <constraint firstItem="om2-pP-Ykg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="IZU-9z-2KE"/>
                             <constraint firstItem="ka3-Ho-5Am" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Ixh-eV-Pxd"/>
@@ -379,7 +379,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="692"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wzk-dX-1Nw">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="335"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="336"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="171" translatesAutoresizingMaskIntoConstraints="NO" id="XiD-LI-Dij" userLabel="Напоминания">
                                                 <rect key="frame" x="16" y="16" width="382" height="31"/>
@@ -666,10 +666,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="EFY-SX-gAr">
-                                                <rect key="frame" x="16" y="141" width="382" height="33"/>
+                                                <rect key="frame" x="16" y="141" width="382" height="34"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJN-Gc-BoZ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="368.66666666666669" height="33"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="368.66666666666669" height="34"/>
                                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="18"/>
                                                         <state key="normal" title="Изменить пароль">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -679,13 +679,13 @@
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="OjM-IY-YNs">
-                                                        <rect key="frame" x="369.66666666666669" y="1.9999999999999982" width="12.333333333333314" height="29.333333333333329"/>
+                                                        <rect key="frame" x="369.66666666666669" y="1.9999999999999982" width="12.333333333333314" height="30.333333333333329"/>
                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </imageView>
                                                 </subviews>
                                             </stackView>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Foz-yY-psm">
-                                                <rect key="frame" x="16" y="210" width="382" height="31"/>
+                                                <rect key="frame" x="16" y="211" width="382" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Face ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yeA-yA-AZY">
                                                         <rect key="frame" x="0.0" y="0.0" width="332" height="31"/>
@@ -699,7 +699,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="GiX-xm-CL8">
-                                                <rect key="frame" x="16" y="277" width="382" height="31"/>
+                                                <rect key="frame" x="16" y="278" width="382" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5V-cG-0Uo">
                                                         <rect key="frame" x="0.0" y="0.0" width="332" height="31"/>
