@@ -224,23 +224,24 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         headerView.backgroundView?.backgroundColor = .black
         headerView.textLabel?.textColor = .black
         headerView.textLabel?.font = UIFont(name: "SFUIText-Regular", size: 22.0)
-    }
+        
+        }
     } else if (section >= 2) && (section <= 5){
         if let headerView = view as? UITableViewHeaderFooterView {
              headerView.contentView.backgroundColor = .white
              headerView.backgroundView?.backgroundColor = .black
              headerView.textLabel?.textColor = UIColor(rgb: 0x4F4F4F)
              headerView.textLabel?.font = UIFont(name: "SFUIText-Regular", size: 18.0)
-    }
+        }
     } else {
         if let headerView = view as? UITableViewHeaderFooterView {
             headerView.contentView.backgroundColor = .white
             headerView.backgroundView?.backgroundColor = .black
             headerView.textLabel?.textColor = .black
             headerView.textLabel?.font = UIFont(name: "SFUIText-Regular", size: 22.0)
-        }
+            }
 
-    }
+        }
 
     }
     
@@ -286,7 +287,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         if section == 1 && mainViewModel.tasks.count != 0 {
-            return 35
+            return 45
         } else if section == 2 && mainViewModel.tasks.count != 0{
             return 45
         }
