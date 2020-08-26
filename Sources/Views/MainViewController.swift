@@ -412,7 +412,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.descriptionLabel.textColor = .black
             
             cell.dateLabel.textColor = UIColor(rgb: 0x219653)
-            cell.dateLabel.text = mainViewModel.dateInHourUpdate(task.pickerDate!)
+            cell.dateLabel.text = mainViewModel.dateUpdate(task.pickerDate!)
         //MARK: Секция 6
         } else if indexPath.section == 6 {
 
