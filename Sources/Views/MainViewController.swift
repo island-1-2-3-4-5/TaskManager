@@ -18,8 +18,8 @@ class MainViewController: UIViewController{
    
     var mainViewModel = MainViewModel()
     var tableViewUpdate = Timer()
-    var settings = SettingsViewController()
-    
+    var settingsViewModel = SettingViewModel()
+
     //MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var taskIndicator: UILabel!
@@ -45,9 +45,9 @@ class MainViewController: UIViewController{
         
         updateIndicator()
         
-        settings.settings = realm.objects(Settings.self)
+        settingsViewModel.settings = realm.objects(Settings.self)
         
-        settings.notification()
+        settingsViewModel.notification()
 
         tableView.refreshControl = myRefreshControl
 
@@ -65,7 +65,7 @@ class MainViewController: UIViewController{
         
     @objc private func refresh(sender: UIRefreshControl){
 
-        settings.notification()
+        settingsViewModel.notification()
         tableView.reloadData()
 
         sender.endRefreshing()
@@ -134,7 +134,7 @@ class MainViewController: UIViewController{
         // перезагружаем таблицу после добавления объекта и обновляем индикатор
         updateIndicator()
         tableView.reloadData()
-        settings.notification()
+        settingsViewModel.notification()
        }
     
     
@@ -149,7 +149,7 @@ class MainViewController: UIViewController{
         tableView.reloadData()
         // Обновляем индикатор
         updateIndicator()
-        settings.notification()
+        settingsViewModel.notification()
         
     }
     // Метод завершения задачи из DetailViewController
@@ -162,7 +162,7 @@ class MainViewController: UIViewController{
         tableView.reloadData()
         // Обновляем индикатор
         updateIndicator()
-        settings.notification()
+        settingsViewModel.notification()
         
     }
     
@@ -319,7 +319,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             
             
 
-            let pickerDate = Calendar.current.date(from:             mainViewModel.formatPickerDate(task.pickerDate!, settings.h, settings.m))!
+            let pickerDate = Calendar.current.date(from:             mainViewModel.formatPickerDate(task.pickerDate!, settingsViewModel.h, settingsViewModel.m))!
 
             let date = Calendar.current.date(from:             mainViewModel.formatPickerDate(task.date, 0, 0))!
             
@@ -393,7 +393,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                                                     
                                                     self.updateIndicator()
                                                     self.mainViewModel.readTasksAndUpateUI(self.tableView)
-                                                    self.settings.notification()
+                                                    self.settingsViewModel.notification()
 
                                                         
                                    
@@ -426,7 +426,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
             self.tableView.reloadData()
             self.updateIndicator()
-            self.settings.notification()
+            self.settingsViewModel.notification()
                      }
 
 

@@ -81,9 +81,9 @@ class MainViewModel {
                 task.date = date
                 if tasks.count != count{
                     
-                    let settings = SettingsViewController()
-                    settings.settings = realm.objects(Settings.self)
-                    settings.notification()
+                    let settingsViewModel = SettingViewModel()
+                    settingsViewModel.settings = realm.objects(Settings.self)
+                    settingsViewModel.notification()
                     tableView.reloadData()
                         
                 }

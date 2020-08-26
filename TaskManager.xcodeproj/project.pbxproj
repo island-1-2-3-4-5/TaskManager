@@ -16,6 +16,7 @@
 		0C74859724E062A30003806C /* NewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C74859624E062A30003806C /* NewViewModel.swift */; };
 		0C93FECC24D8506F00A4D072 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C93FECB24D8506F00A4D072 /* MainViewModel.swift */; };
 		0C93FECE24D8507D00A4D072 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C93FECD24D8507D00A4D072 /* DetailViewModel.swift */; };
+		0CA5D0E824F6A82800CAF63C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA5D0E724F6A82800CAF63C /* SettingsViewModel.swift */; };
 		0CB9679524D307DB00042F5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB9679424D307DB00042F5D /* AppDelegate.swift */; };
 		0CB9679724D307DB00042F5D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB9679624D307DB00042F5D /* SceneDelegate.swift */; };
 		0CB9679924D307DB00042F5D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB9679824D307DB00042F5D /* MainViewController.swift */; };
@@ -53,6 +54,7 @@
 		0C74859624E062A30003806C /* NewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewModel.swift; sourceTree = "<group>"; };
 		0C93FECB24D8506F00A4D072 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		0C93FECD24D8507D00A4D072 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		0CA5D0E724F6A82800CAF63C /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		0CB9679124D307DB00042F5D /* TaskManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CB9679424D307DB00042F5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0CB9679624D307DB00042F5D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			children = (
 				0C93FECB24D8506F00A4D072 /* MainViewModel.swift */,
 				0C93FECD24D8507D00A4D072 /* DetailViewModel.swift */,
+				0CA5D0E724F6A82800CAF63C /* SettingsViewModel.swift */,
 				0C74859624E062A30003806C /* NewViewModel.swift */,
 			);
 			path = ViewModels;
@@ -338,6 +341,7 @@
 				0CB9679924D307DB00042F5D /* MainViewController.swift in Sources */,
 				0CBCF86E24F11384006B0FAB /* Settings.swift in Sources */,
 				0C74859724E062A30003806C /* NewViewModel.swift in Sources */,
+				0CA5D0E824F6A82800CAF63C /* SettingsViewModel.swift in Sources */,
 				0CB967BE24D72DC000042F5D /* StorageManager.swift in Sources */,
 				0C93FECE24D8507D00A4D072 /* DetailViewModel.swift in Sources */,
 				0CB967B424D70A3F00042F5D /* NewViewController.swift in Sources */,

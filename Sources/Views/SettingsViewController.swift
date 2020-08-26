@@ -12,12 +12,8 @@ import RealmSwift
 class SettingsViewController: UIViewController {
 
     //MARK: Свойства
-    var settings: Results<Settings>!
-    var settingUp: Settings!
-    let notifications = Notifications()
-    var mainViewModel = MainViewModel()
-    var h = 0
-    var m = 0
+    var settingsViewModel = SettingViewModel()
+
 
    
     
@@ -35,31 +31,26 @@ class SettingsViewController: UIViewController {
     //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        settings = realm.objects(Settings.self)
-
-
-        mainViewModel.tasksData()
-        setUpScreen()
         
-        notification()
+        settingsViewModel.dataLoad()
 
+        setUpScreen()
 
         }
+    
     
     //MARK: Отображение
     func setUpScreen(){
         
-        saveSettings()
+        settingsViewModel.saveSettings()
         setupNavigationBar()
         
-        reminderSwitchOutlet.isOn = settings[0].remindersIsOn
+        reminderSwitchOutlet.isOn = settingsViewModel.settings[0].remindersIsOn
         
-        if reminderSwitchOutlet.isOn{
-            remindersStack.isHidden = false
-        }
+        if reminderSwitchOutlet.isOn{ remindersStack.isHidden = false }
         
         
-        switch settings[0].numberSwitchIsOn{
+        switch settingsViewModel.settings[0].numberSwitchIsOn{
         case 0:
             timeSwitches[0].isOn = true
         case 1:
@@ -81,25 +72,13 @@ class SettingsViewController: UIViewController {
 
     }
     
-    //MARK: Запись
-    func saveSettings(){
-        let newSettings = Settings(numberSwitchIsOn: 2, remindersIsOn: false)
 
-        
-        if settings.count == 0 {
-            // сохраняем новый объект в базе
-            StorageManager.saveSettings(newSettings)
-
-        }
-    }
-    
     
     //MARK: Перезапись
     func reSaveSettings(_ numberSwitch:Int){
-        settingUp = settings[0]
             try! realm.write{
-                settingUp.numberSwitchIsOn = numberSwitch
-                settingUp.remindersIsOn = reminderSwitchOutlet.isOn
+                settingsViewModel.settings[0].numberSwitchIsOn = numberSwitch
+                settingsViewModel.settings[0].remindersIsOn = reminderSwitchOutlet.isOn
             }
 
     }
@@ -109,97 +88,22 @@ class SettingsViewController: UIViewController {
     
     //MARK: - Actions
     
-    
-    
     // MARK: Установка напоминаний
     @IBAction func remindersSwitch(_ sender: UISwitch) {
 
-        reSaveSettings(settings[0].numberSwitchIsOn)
+        reSaveSettings(settingsViewModel.settings[0].numberSwitchIsOn)
         
         if sender.isOn == false{
             reminderSwitchOutlet.isOn = false
-
             remindersStack.isHidden = true
-            
         } else {
             reminderSwitchOutlet.isOn = true
             remindersStack.isHidden = false
-
-            notification()
-                    
+            settingsViewModel.notification()
                 }
             }
             
-    
-    // эта функция вызывается когда мы включаем пререключатель для уведомлений
-    func notification(){
-        
-        guard settings.count != 0 else { return }
-        
-        // outlet переключателя уведомлений
-        if settings[0].remindersIsOn{
-            // массив с записями из realm
-        mainViewModel.tasksData()
-            
-            
-            
-        guard mainViewModel.tasks.count != 0 else { return }
-            
-            
-            
-        // перебираю записи начиная с самой ранней
-        for i in 0..<mainViewModel.tasks.count{
 
-
-            
-            alarmFormat()
-            
-            let task = mainViewModel.tasks[i]
-            
-
-
-            let identifire = task.name + String(describing: task.createdAt)
-            
-            guard let date = task.pickerDate else {return}
-
-            
-            // отправка даты для срабатывания уведомления
-            notifications.scheduleNotification(identifire: identifire, date: date, h: h, m: m)
-            
-            }
-            
-        }
-        
-    }
-    
-    
-    func alarmFormat(){
-        if settings[0].numberSwitchIsOn == 0{
-            h = 0
-            m = 15
-        } else if settings[0].numberSwitchIsOn == 1{
-            h = 0
-            m = 30
-        } else if settings[0].numberSwitchIsOn == 2{
-            h = 1
-            m = 0
-        } else if settings[0].numberSwitchIsOn == 3{
-            h = 2
-            m = 0
-        } else if settings[0].numberSwitchIsOn == 4{
-            h = 8
-            m = 0
-        } else if settings[0].numberSwitchIsOn == 5{
-            h = 12
-            m = 0
-        } else if settings[0].numberSwitchIsOn == 6{
-            h = 24
-            m = 0
-        }
-    }
-    
-    
-    
     //MARK: Запрос пароля
     @IBAction func passwordSwitch(_ sender: UISwitch) {
         if sender.isOn == false{
