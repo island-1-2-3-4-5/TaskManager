@@ -48,6 +48,7 @@ class MainViewController: UIViewController{
         settings.settings = realm.objects(Settings.self)
         
         settings.notification()
+
         tableView.refreshControl = myRefreshControl
 
     }
@@ -64,8 +65,8 @@ class MainViewController: UIViewController{
         
     @objc private func refresh(sender: UIRefreshControl){
 
-        tableView.reloadData()
         settings.notification()
+        tableView.reloadData()
 
         sender.endRefreshing()
     }
@@ -73,7 +74,6 @@ class MainViewController: UIViewController{
 
     @objc func update(){
         mainViewModel.updateUI(tableView)
-        
         
     }
 

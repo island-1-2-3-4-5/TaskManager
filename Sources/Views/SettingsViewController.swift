@@ -140,7 +140,13 @@ class SettingsViewController: UIViewController {
         if settings[0].remindersIsOn{
             // массив с записями из realm
         mainViewModel.tasksData()
+            
+            
+            
         guard mainViewModel.tasks.count != 0 else { return }
+            
+            
+            
         // перебираю записи начиная с самой ранней
         for i in 0..<mainViewModel.tasks.count{
 
@@ -154,8 +160,11 @@ class SettingsViewController: UIViewController {
 
             let identifire = task.name + String(describing: task.createdAt)
             
+            guard let date = task.pickerDate else {return}
+
+            
             // отправка даты для срабатывания уведомления
-            notifications.scheduleNotification(identifire: identifire, date: task.pickerDate!, h: h, m: m)
+            notifications.scheduleNotification(identifire: identifire, date: date, h: h, m: m)
             
             }
             

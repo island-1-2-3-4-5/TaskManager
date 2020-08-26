@@ -75,7 +75,6 @@ class Notifications: NSObject, UNUserNotificationCenterDelegate {
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         completionHandler([.alert, .sound])
-
     }
     
     func userNotificationCenter(
