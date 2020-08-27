@@ -118,10 +118,12 @@ class NewViewController: UIViewController {
     //MARK: - Action
     @IBAction func hiddenNameText(_ sender: UIButton) {
         nameTextView.isHidden = false
+        nameTextView.becomeFirstResponder()
     }
     
     @IBAction func hiddenDescriptionText(_ sender: UIButton) {
         descriptionTextView.isHidden = false
+        descriptionTextView.becomeFirstResponder()
     }
     
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
