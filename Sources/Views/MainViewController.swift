@@ -28,7 +28,6 @@ class MainViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
         checkLocationEnable()
 
         // делаем отображение базы данных, делаем запрос к отображаемому типу данных Task

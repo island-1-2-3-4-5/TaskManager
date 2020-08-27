@@ -11,7 +11,11 @@ import UIKit
 class MainViewCell: UITableViewCell {
     
     
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel! {
+        didSet {
+            dateLabel.font = UIFont(name: "SFUIText-Bold", size: 14.0)
+        }
+    }
     @IBOutlet weak var descriptionLabel: UILabel! 
     
    

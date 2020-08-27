@@ -51,11 +51,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 notifications.notificationCenter.delegate = notifications
         
         
+ 
+        
+        
+        
+        
         return true
     }
  
 
-    
     
  
 }
