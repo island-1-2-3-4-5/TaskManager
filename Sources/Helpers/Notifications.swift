@@ -48,7 +48,7 @@ class Notifications: NSObject, UNUserNotificationCenterDelegate {
         dateComponent.day = day
          
         // для этого триггера устанавливаем дату срабатывания, она приходит из функции notification
-        let anotherTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: true)
+        let anotherTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: false)
          
         
         

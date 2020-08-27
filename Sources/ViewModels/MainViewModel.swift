@@ -112,6 +112,12 @@ class MainViewModel {
     }
     
     
+    
+    func notification(){
+        settingsViewModel.notification()
+    }
+    
+    
     //MARK: Фильтрация массивов
      func readTasksAndUpateUI(_ tableView: UITableView){
 

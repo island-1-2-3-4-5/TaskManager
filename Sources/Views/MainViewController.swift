@@ -44,7 +44,7 @@ class MainViewController: UIViewController{
         
         updateIndicator()
                 
-        settingsViewModel.notification()
+      
 
         tableView.refreshControl = myRefreshControl
 
@@ -62,7 +62,7 @@ class MainViewController: UIViewController{
         
     @objc private func refresh(sender: UIRefreshControl){
 
-        settingsViewModel.notification()
+        updateIndicator()
         tableView.reloadData()
 
         sender.endRefreshing()
@@ -78,11 +78,16 @@ class MainViewController: UIViewController{
     
     //MARK: - Обновление индикатора
     func updateIndicator() {
+        
+        mainViewModel.notification()
+        
         if mainViewModel.tasksIsEmpty(){
                    taskIndicator.isHidden = false
                } else {
                    taskIndicator.isHidden = true
                }
+        
+        
     }
 
     
@@ -138,7 +143,7 @@ class MainViewController: UIViewController{
         // перезагружаем таблицу после добавления объекта и обновляем индикатор
         updateIndicator()
         tableView.reloadData()
-        settingsViewModel.notification()
+
        }
     
     
@@ -153,7 +158,7 @@ class MainViewController: UIViewController{
         tableView.reloadData()
         // Обновляем индикатор
         updateIndicator()
-        settingsViewModel.notification()
+
         
     }
     // Метод завершения задачи из DetailViewController
@@ -166,8 +171,6 @@ class MainViewController: UIViewController{
         tableView.reloadData()
         // Обновляем индикатор
         updateIndicator()
-        settingsViewModel.notification()
-        
     }
     
     
@@ -470,12 +473,15 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         // удаляем из таблицы строку с объектом и сам объект из базы данных
         let contextItem = UIContextualAction(style: .destructive,
                                                    title: "✕") {  (_, _, _) in // (contextualAction, view, boolValue)
+                                                    
+                                                    
+                                                    
                                                     StorageManager.deleteObject(task)
                                                     tableView.deleteRows(at: [indexPath], with: .automatic)
                                                     
                                                     self.updateIndicator()
                                                     self.mainViewModel.readTasksAndUpateUI(self.tableView)
-                                                    self.settingsViewModel.notification()
+                                                   
 
                                                         
                                    
@@ -517,7 +523,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
             self.tableView.reloadData()
             self.updateIndicator()
-            self.settingsViewModel.notification()
+ 
                      }
 
 
