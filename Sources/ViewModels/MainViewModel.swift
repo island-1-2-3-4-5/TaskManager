@@ -153,7 +153,7 @@ class MainViewModel {
 
     //MARK: Заголовок предстоящие
     func titleForComingSection() -> String{
-       if tasks.count == 0{
+        if (tasks.count == 0) && (tomorrowTasks.count == 0) && (afterTomorrowTasks.count == 0) && (otherTasks.count == 0){
                  title = ""
              } else {
                  title = "Предстоящие"

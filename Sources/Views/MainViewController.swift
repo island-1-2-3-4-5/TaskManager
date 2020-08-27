@@ -274,7 +274,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         if section == 0 && mainViewModel.expiredTasks.count == 0{
             return 0
-        } else if section == 1 && mainViewModel.tasks.count == 0{
+        } else if (section == 1) && (mainViewModel.tasks.count == 0) && (mainViewModel.tomorrowTasks.count == 0) && (mainViewModel.afterTomorrowTasks.count == 0) && (mainViewModel.otherTasks.count == 0){
             return 0
         } else if section == 2 && mainViewModel.tasks.count == 0{
             return 0
