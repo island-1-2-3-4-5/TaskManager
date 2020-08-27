@@ -67,7 +67,7 @@ class SettingViewModel {
             
             let task = tasks[i]
 
-            let identifire = task.name + String(describing: task.createdAt)
+            let identifire = String(describing: task.createdAt)
             
             guard let date = task.pickerDate else {return}
 
