@@ -660,7 +660,7 @@
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0Vb-M5-TJc">
                                                         <rect key="frame" x="333" y="0.0" width="51" height="31"/>
                                                         <connections>
-                                                            <action selector="passwordSwitch:" destination="rU7-US-0vf" eventType="valueChanged" id="TRU-bW-vwT"/>
+                                                            <action selector="securityActionSwitch:" destination="rU7-US-0vf" eventType="valueChanged" id="TRU-bW-vwT"/>
                                                         </connections>
                                                     </switch>
                                                 </subviews>
@@ -695,6 +695,9 @@
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qKP-7n-pfR">
                                                         <rect key="frame" x="333" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="faceIDActionSwitch:" destination="rU7-US-0vf" eventType="valueChanged" id="Inx-Sc-IZH"/>
+                                                        </connections>
                                                     </switch>
                                                 </subviews>
                                             </stackView>
@@ -709,6 +712,9 @@
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dLN-bg-ZPb">
                                                         <rect key="frame" x="333" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="touchIDActionSwitch:" destination="rU7-US-0vf" eventType="valueChanged" id="tRJ-m9-Tno"/>
+                                                        </connections>
                                                     </switch>
                                                 </subviews>
                                             </stackView>
@@ -763,10 +769,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="faceIDSwitch" destination="qKP-7n-pfR" id="LBH-Xc-ziH"/>
                         <outlet property="faceIdStack" destination="Foz-yY-psm" id="Rkn-nR-mCo"/>
                         <outlet property="passwordStack" destination="EFY-SX-gAr" id="3zS-UU-G4D"/>
                         <outlet property="reminderSwitchOutlet" destination="HLb-5I-V6K" id="DP0-rQ-V99"/>
                         <outlet property="remindersStack" destination="lg8-ap-BjM" id="8KB-k4-8qb"/>
+                        <outlet property="securitySwitch" destination="0Vb-M5-TJc" id="8SO-6v-Q31"/>
+                        <outlet property="touchIDSwitch" destination="dLN-bg-ZPb" id="SR1-f3-Alo"/>
                         <outlet property="touchIdersStack" destination="GiX-xm-CL8" id="6PA-G2-Jqe"/>
                         <outletCollection property="timeSwitches" destination="XJn-Uw-TaW" collectionClass="NSMutableArray" id="itl-cq-B2j"/>
                         <outletCollection property="timeSwitches" destination="B69-KE-7Mk" collectionClass="NSMutableArray" id="5gq-iM-6yN"/>

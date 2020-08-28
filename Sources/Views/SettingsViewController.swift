@@ -24,6 +24,9 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var touchIdersStack: UIStackView!
     @IBOutlet weak var reminderSwitchOutlet: UISwitch!
     @IBOutlet var timeSwitches: [UISwitch]!
+    @IBOutlet weak var faceIDSwitch: UISwitch!
+    @IBOutlet weak var touchIDSwitch: UISwitch!
+    @IBOutlet weak var securitySwitch: UISwitch!
     
     
     
@@ -47,8 +50,19 @@ class SettingsViewController: UIViewController {
         
         reminderSwitchOutlet.isOn = settingsViewModel.settings[0].remindersIsOn
         
-        if reminderSwitchOutlet.isOn{ remindersStack.isHidden = false }
+        securitySwitch.isOn = settingsViewModel.settings[0].securityIsOn
         
+        
+        if reminderSwitchOutlet.isOn{ remindersStack.isHidden = false }
+        if securitySwitch.isOn{
+            passwordStack.isHidden = false
+            faceIdStack.isHidden = false
+            touchIdersStack.isHidden = false
+            faceIDSwitch.isOn = settingsViewModel.settings[0].faceIdIsOn
+            touchIDSwitch.isOn = settingsViewModel.settings[0].touchIdIsOn
+            
+            
+        }
         
         switch settingsViewModel.settings[0].numberSwitchIsOn{
         case 0:
@@ -75,7 +89,7 @@ class SettingsViewController: UIViewController {
 
     
     //MARK: Перезапись
-    func reSaveSettings(_ numberSwitch:Int){
+    func reSaveRemindersSettings(_ numberSwitch:Int){
             try! realm.write{
                 settingsViewModel.settings[0].numberSwitchIsOn = numberSwitch
                 settingsViewModel.settings[0].remindersIsOn = reminderSwitchOutlet.isOn
@@ -88,10 +102,12 @@ class SettingsViewController: UIViewController {
     
     //MARK: - Actions
     
+    
+    
     // MARK: Установка напоминаний
     @IBAction func remindersSwitch(_ sender: UISwitch) {
 
-        reSaveSettings(settingsViewModel.settings[0].numberSwitchIsOn)
+        reSaveRemindersSettings(settingsViewModel.settings[0].numberSwitchIsOn)
         
         if sender.isOn == false{
             reminderSwitchOutlet.isOn = false
@@ -104,26 +120,13 @@ class SettingsViewController: UIViewController {
             }
             
 
-    //MARK: Запрос пароля
-    @IBAction func passwordSwitch(_ sender: UISwitch) {
-        if sender.isOn == false{
-            passwordStack.isHidden = true
-            faceIdStack.isHidden = true
-            touchIdersStack.isHidden = true
-        } else {
-            passwordStack.isHidden = false
-            faceIdStack.isHidden = false
-            touchIdersStack.isHidden = false
-        }
-    }
-
     
     //MARK: 15 минут
     @IBAction func fiftyMinutesSwitch(_ sender: UISwitch) {
         if sender.isOn{
             turnOffSwitch()
             timeSwitches[0].isOn = true
-            reSaveSettings(0)
+            reSaveRemindersSettings(0)
             
         }
     }
@@ -133,7 +136,7 @@ class SettingsViewController: UIViewController {
         if sender.isOn{
             turnOffSwitch()
             timeSwitches[1].isOn = true
-            reSaveSettings(1)
+            reSaveRemindersSettings(1)
         }
     }
     
@@ -143,7 +146,7 @@ class SettingsViewController: UIViewController {
         if sender.isOn{
             turnOffSwitch()
             timeSwitches[2].isOn = true
-            reSaveSettings(2)
+            reSaveRemindersSettings(2)
         }
     }
     
@@ -153,7 +156,7 @@ class SettingsViewController: UIViewController {
         if sender.isOn{
             turnOffSwitch()
             timeSwitches[3].isOn = true
-            reSaveSettings(3)
+            reSaveRemindersSettings(3)
         }
     }
     
@@ -163,7 +166,7 @@ class SettingsViewController: UIViewController {
         if sender.isOn{
             turnOffSwitch()
             timeSwitches[4].isOn = true
-            reSaveSettings(4)
+            reSaveRemindersSettings(4)
         }
     }
     
@@ -173,7 +176,7 @@ class SettingsViewController: UIViewController {
         if sender.isOn{
             turnOffSwitch()
             timeSwitches[5].isOn = true
-            reSaveSettings(5)
+            reSaveRemindersSettings(5)
         }
     }
     
@@ -183,7 +186,7 @@ class SettingsViewController: UIViewController {
         if sender.isOn{
             turnOffSwitch()
             timeSwitches[6].isOn = true
-            reSaveSettings(6)
+            reSaveRemindersSettings(6)
         }
     }
     
@@ -196,6 +199,58 @@ class SettingsViewController: UIViewController {
         timeSwitches[4].isOn = false
         timeSwitches[5].isOn = false
         timeSwitches[6].isOn = false
+    }
+    
+    
+    //MARK: Запрос пароля
+    @IBAction func securityActionSwitch(_ sender: UISwitch) {
+        if sender.isOn == false{
+            passwordStack.isHidden = true
+            faceIdStack.isHidden = true
+            touchIdersStack.isHidden = true
+            faceIDSwitch.isOn = false
+            touchIDSwitch.isOn = false
+        } else {
+            passwordStack.isHidden = false
+            faceIdStack.isHidden = false
+            touchIdersStack.isHidden = false
+            faceIDSwitch.isOn = settingsViewModel.settings[0].faceIdIsOn
+            touchIDSwitch.isOn = settingsViewModel.settings[0].touchIdIsOn
+        }
+        reSaveSecuritySettings()
+    }
+    
+    
+    @IBAction func faceIDActionSwitch(_ sender: UISwitch) {
+        if sender.isOn{
+            faceIDSwitch.isOn = true
+        } else {
+            faceIDSwitch.isOn = false
+        }
+        reSaveSecuritySettings()
+    }
+    
+    
+    @IBAction func touchIDActionSwitch(_ sender: UISwitch) {
+        if sender.isOn{
+            touchIDSwitch.isOn = true
+        } else {
+            touchIDSwitch.isOn = false
+        }
+        reSaveSecuritySettings()
+
+    }
+    
+    
+    
+    
+    func reSaveSecuritySettings(){
+        try! realm.write{
+        settingsViewModel.settings[0].securityIsOn = securitySwitch.isOn
+        settingsViewModel.settings[0].faceIdIsOn = faceIDSwitch.isOn
+        settingsViewModel.settings[0].touchIdIsOn = touchIDSwitch.isOn
+            
+        }
     }
     
     

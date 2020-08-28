@@ -41,6 +41,8 @@
 		0CE0EBFB24F794CF00F56AA7 /* SFUIText-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CE0EBEF24F794CE00F56AA7 /* SFUIText-RegularItalic.ttf */; };
 		0CE0EBFC24F794CF00F56AA7 /* SFUIText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CE0EBF024F794CF00F56AA7 /* SFUIText-Semibold.ttf */; };
 		0CE0EBFD24F794CF00F56AA7 /* SFUIText-HeavyItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CE0EBF124F794CF00F56AA7 /* SFUIText-HeavyItalic.ttf */; };
+		0CE0EC0224F92B2000F56AA7 /* LaunchPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE0EC0024F92B2000F56AA7 /* LaunchPasscodeViewController.swift */; };
+		0CE0EC0324F92B2000F56AA7 /* LaynchPasscodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CE0EC0124F92B2000F56AA7 /* LaynchPasscodeViewController.xib */; };
 		4E7F7145E5D8BC7DAD9356E3 /* Pods_TaskManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FED8D4F36D94CBF1D72907B /* Pods_TaskManager.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +83,8 @@
 		0CE0EBEF24F794CE00F56AA7 /* SFUIText-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-RegularItalic.ttf"; sourceTree = "<group>"; };
 		0CE0EBF024F794CF00F56AA7 /* SFUIText-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Semibold.ttf"; sourceTree = "<group>"; };
 		0CE0EBF124F794CF00F56AA7 /* SFUIText-HeavyItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-HeavyItalic.ttf"; sourceTree = "<group>"; };
+		0CE0EC0024F92B2000F56AA7 /* LaunchPasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPasscodeViewController.swift; sourceTree = "<group>"; };
+		0CE0EC0124F92B2000F56AA7 /* LaynchPasscodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaynchPasscodeViewController.xib; sourceTree = "<group>"; };
 		1FED8D4F36D94CBF1D72907B /* Pods_TaskManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5152882E5774BC16AAF089 /* Pods-TaskManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskManager.debug.xcconfig"; path = "Target Support Files/Pods-TaskManager/Pods-TaskManager.debug.xcconfig"; sourceTree = "<group>"; };
 		B56B9EE44A64FCA63DA8567F /* Pods-TaskManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskManager.release.xcconfig"; path = "Target Support Files/Pods-TaskManager/Pods-TaskManager.release.xcconfig"; sourceTree = "<group>"; };
@@ -151,6 +155,8 @@
 				0CB967AF24D4485300042F5D /* MainViewCell.swift */,
 				0CB9679A24D307DB00042F5D /* Main.storyboard */,
 				0CB9679F24D307DE00042F5D /* LaunchScreen.storyboard */,
+				0CE0EC0024F92B2000F56AA7 /* LaunchPasscodeViewController.swift */,
+				0CE0EC0124F92B2000F56AA7 /* LaynchPasscodeViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -293,6 +299,7 @@
 			files = (
 				0CE0EBF524F794CF00F56AA7 /* SFUIText-Bold.ttf in Resources */,
 				0CE0EBF324F794CF00F56AA7 /* SFUIText-Light.ttf in Resources */,
+				0CE0EC0324F92B2000F56AA7 /* LaynchPasscodeViewController.xib in Resources */,
 				0CE0EBF924F794CF00F56AA7 /* SFUIText-Medium.ttf in Resources */,
 				0CE0EBFA24F794CF00F56AA7 /* SFUIText-Regular.ttf in Resources */,
 				0CB967A124D307DE00042F5D /* LaunchScreen.storyboard in Resources */,
@@ -371,6 +378,7 @@
 				0C74858624DB357C0003806C /* DetailViewController.swift in Sources */,
 				0C48591024E813E8003C54F1 /* SettingsViewController.swift in Sources */,
 				0C74858824DC676F0003806C /* DateFormat.swift in Sources */,
+				0CE0EC0224F92B2000F56AA7 /* LaunchPasscodeViewController.swift in Sources */,
 				0CBCF87024F17A68006B0FAB /* Notifications.swift in Sources */,
 				0CBCF86C24EEE61A006B0FAB /* UIColorExtension.swift in Sources */,
 				0C48591424E86BB1003C54F1 /* PasswordViewController.swift in Sources */,

@@ -33,7 +33,7 @@ class SettingViewModel {
     
     //MARK: Запись
     func saveSettings(){
-        let newSettings = Settings(numberSwitchIsOn: 2, remindersIsOn: false)
+        let newSettings = Settings(numberSwitchIsOn: 2, remindersIsOn: false, securityIsOn: false, faceIdIsOn: false, touchIdIsOn: false)
 
         
         if settings.count == 0 {
