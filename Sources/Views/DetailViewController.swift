@@ -48,6 +48,9 @@ class DetailViewController: UIViewController {
         map.showsUserLocation = false
         pickerDate.text = detailViewModel.pickerDate()
         pickerDate.textColor = detailViewModel.textColorDate()
+        
+        
+        
     }
     
 

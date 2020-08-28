@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import UserNotifications
 
 class SettingsViewController: UIViewController {
 
@@ -61,7 +62,6 @@ class SettingsViewController: UIViewController {
             faceIDSwitch.isOn = settingsViewModel.settings[0].faceIdIsOn
             touchIDSwitch.isOn = settingsViewModel.settings[0].touchIdIsOn
             
-            
         }
         
         switch settingsViewModel.settings[0].numberSwitchIsOn{
@@ -107,16 +107,20 @@ class SettingsViewController: UIViewController {
     // MARK: Установка напоминаний
     @IBAction func remindersSwitch(_ sender: UISwitch) {
 
-        reSaveRemindersSettings(settingsViewModel.settings[0].numberSwitchIsOn)
-        
         if sender.isOn == false{
             reminderSwitchOutlet.isOn = false
             remindersStack.isHidden = true
+
+            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         } else {
             reminderSwitchOutlet.isOn = true
             remindersStack.isHidden = false
             settingsViewModel.notification()
                 }
+        
+        reSaveRemindersSettings(settingsViewModel.settings[0].numberSwitchIsOn)
+
             }
             
 

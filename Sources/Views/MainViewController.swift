@@ -28,6 +28,8 @@ class MainViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        settingsViewModel.notification()
+
         checkLocationEnable()
 
         // делаем отображение базы данных, делаем запрос к отображаемому типу данных Task
@@ -43,7 +45,7 @@ class MainViewController: UIViewController{
         tableViewUpdate  = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         
         updateIndicator()
-                
+
       
 
         tableView.refreshControl = myRefreshControl
@@ -80,6 +82,7 @@ class MainViewController: UIViewController{
     func updateIndicator() {
         
         mainViewModel.notification()
+
         
         if mainViewModel.tasksIsEmpty(){
                    taskIndicator.isHidden = false
@@ -335,6 +338,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainViewCell
         
         var task: Task!
+
+        
         
         //MARK: Секция 0
         if indexPath.section == 0{
@@ -364,7 +369,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             cell.descriptionLabel.textColor = .black
 
 
-            let pickerDate = Calendar.current.date(from:             mainViewModel.formatPickerDate(task.pickerDate!, settingsViewModel.h, settingsViewModel.m))!
+ 
+            let pickerDate = Calendar.current.date(from:             mainViewModel.formatPickerDate(task.pickerDate!,mainViewModel.h , mainViewModel.m))!
 
             let date = Calendar.current.date(from:             mainViewModel.formatPickerDate(task.date, 0, 0))!
             

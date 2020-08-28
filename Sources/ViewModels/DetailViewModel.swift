@@ -12,6 +12,8 @@ import MapKit
 class DetailViewModel{
     
     var currentTask: Task!
+    let settingsViewModel = SettingViewModel()
+
     
     func annotation() -> MKPointAnnotation{
         
@@ -40,7 +42,23 @@ class DetailViewModel{
         if currentTask.pickerDate! < currentTask.date && currentTask.isCompleted == false {
             return UIColor(rgb: 0xEB5757)
         } else if currentTask.pickerDate! > currentTask.date && currentTask.isCompleted == false {
-            return UIColor(rgb: 0x219653)
+            
+            let formatPickerDate = DateFormat()
+            settingsViewModel.notification()
+            
+            let pickerDate = Calendar.current.date(from:             formatPickerDate.formatPickerDate(currentTask.pickerDate!,settingsViewModel.h , settingsViewModel.m))!
+
+            let date = Calendar.current.date(from:             formatPickerDate.formatPickerDate(currentTask.date,0 , 0))!
+            
+            
+            if date < pickerDate {
+                return UIColor(rgb: 0x219653)
+            } else {
+               return UIColor(rgb: 0xF2994A)
+            }
+            
+            
+            
         }
       return UIColor(rgb: 0xBDBDBD)
 

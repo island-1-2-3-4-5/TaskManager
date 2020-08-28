@@ -26,6 +26,8 @@ class MainViewModel {
     var alert: UIAlertController!
     let locationManager = CLLocationManager()
     let settingsViewModel = SettingViewModel()
+    var h = 0
+    var m = 0
 
     
     //MARK: AlertController
@@ -115,6 +117,9 @@ class MainViewModel {
     
     func notification(){
         settingsViewModel.notification()
+      
+        h = settingsViewModel.h
+        m = settingsViewModel.m
     }
     
     

@@ -45,6 +45,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         settings = realm.objects(Settings.self)
         guard let settings = settings else {return}
+        guard settings.count != 0 else {return}
         
         if settings[0].securityIsOn{
         

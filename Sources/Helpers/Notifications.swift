@@ -31,6 +31,10 @@ class Notifications: NSObject, UNUserNotificationCenterDelegate {
      
     func scheduleNotification(identifire: String, date: Date, h: Int, m: Int) {
          
+        
+        notificationCenter.removeAllDeliveredNotifications() // To remove all delivered notifications
+
+        
         let content = UNMutableNotificationContent()
         content.title = "Уведомление"
         content.body = "Задача истечет через \(h) ч \(m) минут"
