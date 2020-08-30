@@ -14,7 +14,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LaunchPasscodeViewController" customModule="TaskManager" customModuleProvider="target">
             <connections>
-                <outlet property="passwordLabel" destination="b1T-0m-5SV" id="dFM-iP-7ze"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="securityView" destination="nPd-6W-o0u" collectionClass="NSMutableArray" id="jxl-Z6-rwR"/>
                 <outletCollection property="securityView" destination="tMp-CI-i4v" collectionClass="NSMutableArray" id="MSf-1G-EnJ"/>
@@ -182,15 +181,6 @@
                         <action selector="forgetPassword:" destination="-1" eventType="touchUpInside" id="4ce-Ho-1xb"/>
                     </connections>
                 </button>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1T-0m-5SV">
-                    <rect key="frame" x="101" y="232" width="212" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="I9t-PN-y3g"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="48"/>
-                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="a5s-XT-aGF">
                     <rect key="frame" x="101" y="208" width="212" height="16"/>
                     <subviews>
@@ -232,14 +222,11 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="MxU-9R-n4L" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7cU-1C-5LJ"/>
-                <constraint firstItem="5qg-4n-35W" firstAttribute="top" secondItem="b1T-0m-5SV" secondAttribute="bottom" constant="40" id="E6P-c8-VHs"/>
                 <constraint firstItem="5qg-4n-35W" firstAttribute="top" secondItem="a5s-XT-aGF" secondAttribute="bottom" constant="88" id="QP9-sV-fbG"/>
                 <constraint firstItem="a5s-XT-aGF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Zuw-a8-FcX"/>
                 <constraint firstAttribute="bottom" secondItem="MxU-9R-n4L" secondAttribute="bottom" constant="98" id="a6Y-gk-t9O"/>
-                <constraint firstItem="b1T-0m-5SV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bTJ-6f-yoe"/>
                 <constraint firstItem="a5s-XT-aGF" firstAttribute="width" secondItem="5qg-4n-35W" secondAttribute="width" id="cGq-4i-0f4"/>
                 <constraint firstItem="5qg-4n-35W" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dCO-cB-0S3"/>
-                <constraint firstItem="b1T-0m-5SV" firstAttribute="width" secondItem="5qg-4n-35W" secondAttribute="width" id="i2E-DZ-qnZ"/>
                 <constraint firstItem="5qg-4n-35W" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="n1m-UO-if1"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

@@ -12,51 +12,11 @@ import LocalAuthentication
 class LaunchPasscodeViewController: UIViewController {
 
     var settingsViewModel = SettingViewModel()
-
+    var password = ""
+    
+    
+    
     @IBOutlet var securityView: [UIView]!
-    
-    
-    
-    
-
-    @IBOutlet weak var passwordLabel: UILabel!
-    
-    @IBAction func numPad(_ sender: UIButton) {
-        
-        if passwordLabel.text!.count <= 3{
-        passwordLabel.text = passwordLabel.text! + String(sender.tag)
-    
-            for i in 0..<passwordLabel.text!.count {
-                securityView[i].backgroundColor = UIColor(rgb: 0x333333)
-            }
-        }
-        
-        
-
-        
-        if passwordLabel.text == settingsViewModel.settings[0].password{
-            DispatchQueue.main.async {
-            // Что-то сделать
-            self.dismiss(animated: true, completion: nil)
-            }
-        }
-    }
-
-    
-    
-    @IBAction func deleteButton(_ sender: UIButton) {
-        if passwordLabel.text!.count != 0 {
-            passwordLabel.text?.removeLast()
-            for i in 0..<securityView.count {
-                securityView[i].backgroundColor = UIColor(rgb: 0xc4c4c4)
-            }
-            for i in 0..<passwordLabel.text!.count {
-                securityView[i].backgroundColor = UIColor(rgb: 0x333333)
-            }
-        }
-
-
-    }
     
     
     override func viewDidLoad() {
@@ -69,6 +29,44 @@ class LaunchPasscodeViewController: UIViewController {
         }
         
     }
+    
+    
+    
+    
+    @IBAction func numPad(_ sender: UIButton) {
+        
+        if password.count <= 3{
+        password = password + String(sender.tag)
+    
+            for i in 0..<password.count {
+                securityView[i].backgroundColor = UIColor(rgb: 0x333333)
+            }
+        }
+        
+        if password == settingsViewModel.settings[0].password{
+            DispatchQueue.main.async {
+            // Что-то сделать
+            self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+
+    
+    
+    @IBAction func deleteButton(_ sender: UIButton) {
+        if password.count != 0 {
+            password.removeLast()
+            for i in 0..<securityView.count {
+                securityView[i].backgroundColor = UIColor(rgb: 0xc4c4c4)
+            }
+            for i in 0..<password.count {
+                securityView[i].backgroundColor = UIColor(rgb: 0x333333)
+            }
+        }
+
+
+    }
+
 
 
 
