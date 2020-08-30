@@ -33,7 +33,7 @@ class SettingViewModel {
     
     //MARK: Запись
     func saveSettings(){
-        let newSettings = Settings(numberSwitchIsOn: 2, remindersIsOn: false, securityIsOn: false, faceIdIsOn: false, touchIdIsOn: false)
+        let newSettings = Settings(numberSwitchIsOn: 2, remindersIsOn: false, securityIsOn: false, faceIdIsOn: false, touchIdIsOn: false, password: "0000")
 
         
         if settings.count == 0 {
@@ -84,6 +84,9 @@ class SettingViewModel {
     
     //MARK: За сколько оповещать
     func alarmFormat(){
+        settings = realm.objects(Settings.self)
+        guard settings.count != 0 else {return}
+        if settings[0].remindersIsOn{
         if settings[0].numberSwitchIsOn == 0{
             h = 0
             m = 15
@@ -104,6 +107,10 @@ class SettingViewModel {
             m = 0
         } else if settings[0].numberSwitchIsOn == 6{
             h = 24
+            m = 0
+        }
+        } else {
+            h = 0
             m = 0
         }
     }

@@ -18,7 +18,6 @@ class MainViewController: UIViewController{
    
     var mainViewModel = MainViewModel()
     var tableViewUpdate = Timer()
-    var settingsViewModel = SettingViewModel()
 
     //MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!

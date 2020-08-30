@@ -44,7 +44,7 @@ class DetailViewModel{
         } else if currentTask.pickerDate! > currentTask.date && currentTask.isCompleted == false {
             
             let formatPickerDate = DateFormat()
-            settingsViewModel.notification()
+            settingsViewModel.alarmFormat()
             
             let pickerDate = Calendar.current.date(from:             formatPickerDate.formatPickerDate(currentTask.pickerDate!,settingsViewModel.h , settingsViewModel.m))!
 

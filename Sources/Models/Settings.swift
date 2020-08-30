@@ -19,16 +19,19 @@ class Settings: Object {
     @objc dynamic var securityIsOn = false
     @objc dynamic var faceIdIsOn = false
     @objc dynamic var touchIdIsOn = false
+    @objc dynamic var password = "0000"
+    
  
     
     // вспомогательный инициализатор (не является обязательным), с помощью него вносим новые значения в базу
-    convenience init(numberSwitchIsOn: Int, remindersIsOn: Bool, securityIsOn: Bool, faceIdIsOn: Bool, touchIdIsOn: Bool){
+    convenience init(numberSwitchIsOn: Int, remindersIsOn: Bool, securityIsOn: Bool, faceIdIsOn: Bool, touchIdIsOn: Bool, password: String){
         self.init() //  сначала инициализируется обычный инициализатор а после присваиваем новые значения
         self.numberSwitchIsOn = numberSwitchIsOn
         self.remindersIsOn = remindersIsOn
         self.securityIsOn = securityIsOn
         self.faceIdIsOn = faceIdIsOn
         self.touchIdIsOn = touchIdIsOn
+        self.password = password
     }
     
     

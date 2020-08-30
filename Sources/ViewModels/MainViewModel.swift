@@ -117,7 +117,8 @@ class MainViewModel {
     
     func notification(){
         settingsViewModel.notification()
-      
+        settingsViewModel.alarmFormat()
+
         h = settingsViewModel.h
         m = settingsViewModel.m
     }

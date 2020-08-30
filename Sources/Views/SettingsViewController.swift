@@ -253,7 +253,6 @@ class SettingsViewController: UIViewController {
         settingsViewModel.settings[0].securityIsOn = securitySwitch.isOn
         settingsViewModel.settings[0].faceIdIsOn = faceIDSwitch.isOn
         settingsViewModel.settings[0].touchIdIsOn = touchIDSwitch.isOn
-            
         }
     }
     
@@ -271,5 +270,21 @@ class SettingsViewController: UIViewController {
         navigationItem.leftBarButtonItem = nil // убираем кнопку cancel, чтобы вместо неё была кнопка back
          
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    @IBAction func unwindPassword(_ segue: UIStoryboardSegue) {
+        // передаем новое значение в таблицу
+        guard let newPasswordVC = segue.source as? PasswordViewController else {return}
+        newPasswordVC.savePassword()
+
+       }
+
 
 }
