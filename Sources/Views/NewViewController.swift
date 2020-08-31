@@ -89,7 +89,7 @@ class NewViewController: UIViewController {
             whatsDay = "завтра"
         } else if day == 2 {
             whatsDay = "послезавтра"
-        } else if day >= 3 {
+        } else {
             whatsDay = "В другие дни"
         }
         
